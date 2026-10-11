@@ -1,23 +1,18 @@
-package it.unicam.cs.mpgc.rpg130573.model;
+package it.unicam.cs.mpgc.rpg130573.Model;
 
-import it.unicam.cs.mpgc.rpg130573.model.managers.StatusManager;
+import it.unicam.cs.mpgc.rpg130573.Model.Managers.StatusManager;
 
 /**
  * Classe astratta che implementa una qualsiasi entità nel gioco, Winx o nemico
  */
 public abstract class Entity {
     private final String name;
-    private int hp;
-    private int maxHP;
-    private boolean isAlive;
     private final StatusManager statusManager;
 
-    public Entity(String name, int hp, int maxHP) {
+    public Entity(String name, StatusManager statusManager) {
         this.name = name;
-        this.hp = hp;
-        this.maxHP = maxHP;
-        this.isAlive = true;
-        this.statusManager = new StatusManager(this, this.hp, this.maxHP);
+        this.statusManager = statusManager;
+        this.statusManager.setOwner(this);
     }
 
     public String getName() {return this.name;}

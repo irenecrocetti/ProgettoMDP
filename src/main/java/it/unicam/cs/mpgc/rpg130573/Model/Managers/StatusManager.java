@@ -1,18 +1,17 @@
-package it.unicam.cs.mpgc.rpg130573.model.managers;
+package it.unicam.cs.mpgc.rpg130573.Model.Managers;
 
-import it.unicam.cs.mpgc.rpg130573.model.Entity;
+import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 /**
  * Classe manager che gestisce le caratteristiche che hanno in comune tutte le entità
  */
 public class StatusManager {
-    private final Entity owner;
+    private Entity owner;
     private int hp;
     private int maxHP;
     private boolean isAlive;
 
-    public StatusManager(Entity owner, int hp, int maxHP){
-        this.owner = owner;
+    public StatusManager(int hp, int maxHP){
         this.hp = hp;
         this.maxHP = maxHP;
         this.isAlive = true;
@@ -23,6 +22,7 @@ public class StatusManager {
     public int getMaxHP() {return this.maxHP;}
     public boolean isAlive() {return this.isAlive;}
 
+    public void setOwner(Entity owner) {this.owner = owner;}
     public void setHp(int amount) {this.hp = amount;}
     public void setMaxHP(int amount) {this.maxHP = amount;}
 
