@@ -1,5 +1,8 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Winx;
 
+/**
+ * Definisce le statistiche e abilità di Bloom
+ */
 public class Bloom extends Winx{
     private static final int BLOOM_DEFAULT_HEALTH = 100;
     private static final int BLOOM_DEFAULT_STAMINA = 80;

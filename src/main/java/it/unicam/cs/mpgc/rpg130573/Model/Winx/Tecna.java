@@ -1,5 +1,8 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Winx;
 
+/**
+ * Definisce le statistiche e abilità di base di Tecna
+ */
 public class Tecna extends Winx{
     private static final int TECNA_DEFAULT_HEALTH = 80;
     private static final int TECNA_DEFAULT_STAMINA = 100;
