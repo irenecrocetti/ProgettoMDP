@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Abilities.Interfaces;
 
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
-import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.EnchantmentType;
+import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
@@ -13,7 +13,7 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * sbloccato, il tipo di target che accetta, il personaggio che
  * può usare l'incantesimo ed il tipo di incantesimo
  */
-public interface Enchantment {
+public interface Spell {
 
     /**
      * Metodo che esegue l'incantesimo sull'entità indicata
@@ -44,5 +44,5 @@ public interface Enchantment {
     /**
      * @return il tipo di incantesimo
      */
-    EnchantmentType getEnchantmentType();
+    SpellType getEnchantmentType();
 }
