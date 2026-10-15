@@ -21,7 +21,7 @@ public interface Spell {
      * @param source l'entità che esegue l'incantesimo
      * @param target l'entità su cui si scaglia l'incantesimo
      */
-    default void execute(Entity source, Entity target) {}
+    boolean execute(Entity source, Entity target);
 
     String getName();
 
@@ -29,7 +29,7 @@ public interface Spell {
 
     int getStaminaCost();
 
-    int isUnlockedAtLevel();
+    int getUnlockLevel();
 
     /**
      * @return il tipo di entità a cui e diretto l'incantesimo
@@ -44,5 +44,5 @@ public interface Spell {
     /**
      * @return il tipo di incantesimo
      */
-    SpellType getEnchantmentType();
+    SpellType getSpellType();
 }

@@ -34,10 +34,9 @@ public class StatusManager {
      * @param damage quantità di danno inflitto all'entità
      */
     public void takeDamage(int damage) {
-        this.hp = Math.max(0, this.hp - damage);
-        if(this.hp == 0) {
-            this.isAlive = false;
-        }
+        int finalDamage = owner.getEffectManager().applyIncomingDamageModifiers(damage);
+        this.hp = Math.max(0, this.hp - finalDamage);
+        if (this.hp == 0) this.isAlive = false;
     }
 
     /**

@@ -8,7 +8,6 @@ public class WinxStatusManager extends StatusManager{
     private int stamina;
     private int maxStamina;
     private int xp;
-    private boolean isShielded;
 
     public WinxStatusManager(int health, int maxHealth, int stamina, int maxStamina, int xp) {
         super(health, maxHealth);
@@ -20,28 +19,11 @@ public class WinxStatusManager extends StatusManager{
     public int getStamina() {return this.stamina;}
     public int getMaxStamina() {return this.maxStamina;}
     public int getXp() {return this.xp;}
-    public boolean isShielded() {return this.isShielded;}
 
     public void setStamina(int amount){this.stamina = amount;}
     public void setMaxStamina(int amount){this.maxStamina = amount;}
-    public void setShielded(boolean value){this.isShielded = value;}
 
     //TODO gestione interna al personaggio dei livelli
-
-    /**
-     * Viene fatto un override al metodo della superclasse cosìcché se è stato applicato
-     * uno scudo il danno non viene registrato e successivamente lo scudo viene disattivato
-     *
-     * @param damage quantità di danno inflitto all'entità
-     */
-    @Override
-    public void takeDamage(int damage) {
-        if(this.isShielded()){
-            this.setShielded(false);
-            return;
-        }
-        super.takeDamage(damage);
-    }
 
     /**
      * Rigenera una quantità di stamina.
