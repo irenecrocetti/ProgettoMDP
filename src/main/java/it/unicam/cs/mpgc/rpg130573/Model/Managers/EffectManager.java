@@ -16,7 +16,17 @@ public class EffectManager {
 
     public EffectManager(Entity owner){ this.owner = owner; }
 
-    public void addEffect(Effect effect){
+    public void addEffect(Effect effect) {
+        if (!owner.isAlive()) return;
+        Iterator<Effect> it = effects.iterator();
+        while (it.hasNext()) {
+            Effect old = it.next();
+            if (old.getName().equals(effect.getName())) {
+                old.onExpire(owner);
+                it.remove();
+                break;
+            }
+        }
         effects.add(effect);
         effect.onApply(owner);
     }

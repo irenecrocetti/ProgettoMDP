@@ -15,4 +15,8 @@ public  class Villain extends Entity {
 
     public int getAccuracy() {return this.accuracy;}
     public int getXPReleased() {return this.XPReleased;}
+
+    public int getEffectiveAccuracy() {
+        return this.getEffectManager().applyAccuracyModifiers(this.accuracy);
+    }
 }
