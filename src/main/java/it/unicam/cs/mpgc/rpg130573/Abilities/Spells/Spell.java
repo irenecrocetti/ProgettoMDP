@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130573.Abilities.Interfaces;
+package it.unicam.cs.mpgc.rpg130573.Abilities.Spells;
 
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;

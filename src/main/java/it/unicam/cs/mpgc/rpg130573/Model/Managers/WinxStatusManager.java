@@ -54,6 +54,12 @@ public class WinxStatusManager extends StatusManager{
         }
     }
 
+    public void decreaseStamina(int amount){
+        if(this.isAlive()){
+            this.stamina = Math.max(0, stamina - amount);
+        }
+    }
+
     /**
      * Rigenera completamente la stamina
      */

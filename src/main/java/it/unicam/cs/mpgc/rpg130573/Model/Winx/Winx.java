@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Winx;
 
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
+import it.unicam.cs.mpgc.rpg130573.Model.Managers.StatusManager;
 import it.unicam.cs.mpgc.rpg130573.Model.Managers.WinxStatusManager;
 
 /**
@@ -12,12 +13,16 @@ public class Winx extends Entity {
         super(name, new WinxStatusManager(health, maxHealth, stamina, maxStamina, xp));
     }
 
-    public int getStamina() {return this.getWinxStatusManager().getStamina();}
-    public int getMaxStamina() {return this.getWinxStatusManager().getMaxStamina();}
-    public int getXp() {return this.getWinxStatusManager().getXp();}
-    public WinxStatusManager getWinxStatusManager() {return (WinxStatusManager) this.getStatusManager();}
+    @Override
+    public WinxStatusManager getStatusManager() {
+        return (WinxStatusManager) super.getStatusManager();
+    }
 
-    public void setStamina(int amount) {this.getWinxStatusManager().setStamina(amount);}
-    public void setMaxStamina(int amount) {this.getWinxStatusManager().setMaxStamina(amount);}
+    public int getStamina() {return this.getStatusManager().getStamina();}
+    public int getMaxStamina() {return this.getStatusManager().getMaxStamina();}
+    public int getXp() {return this.getStatusManager().getXp();}
+
+    public void setStamina(int amount) {this.getStatusManager().setStamina(amount);}
+    public void setMaxStamina(int amount) {this.getStatusManager().setMaxStamina(amount);}
 }
 
