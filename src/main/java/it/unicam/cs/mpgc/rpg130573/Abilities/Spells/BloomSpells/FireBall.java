@@ -4,6 +4,7 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
+import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 /**
@@ -14,10 +15,13 @@ public class FireBall extends WinxSpell {
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
     public static final int DAMAGE = 20;
+    public static final int BURN_DAMAGE = 7;
+    public static final int BURN_DURATION = 3;
 
     @Override
     protected void doEffect(Entity source, Entity target) {
         target.getStatusManager().takeDamage(DAMAGE);
+        target.getEffectManager().addEffect(new DamageOverTimeEffect("Burn", BURN_DURATION, BURN_DAMAGE));
     }
 
     @Override

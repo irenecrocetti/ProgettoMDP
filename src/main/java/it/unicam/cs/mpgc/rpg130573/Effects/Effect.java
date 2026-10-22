@@ -41,4 +41,9 @@ public interface Effect {
      * Chiamato quando l'effetto scade o viene rimosso
      */
     default void onExpire(Entity owner) {}
+
+    /**
+     * Chiamato a ogni fine turno dall'owner, prima del tick della durata
+     */
+    default void onTurnEnd(Entity owner) {}
 }

@@ -48,8 +48,14 @@ public class EffectManager {
         Iterator<Effect> it = effects.iterator();
         while (it.hasNext()) {
             Effect e = it.next();
+            if(!owner.isAlive()){
+                e.onExpire(owner);
+                it.remove();
+                continue;
+            }
+            e.onTurnEnd(owner);
             e.tick();
-            if (e.isExpired()) {
+            if(e.isExpired() || !owner.isAlive()) {
                 e.onExpire(owner);
                 it.remove();
             }
