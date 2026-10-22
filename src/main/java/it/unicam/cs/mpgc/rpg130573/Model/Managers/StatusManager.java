@@ -45,6 +45,7 @@ public class StatusManager {
      * @param amount la quantità di hp da rigenerare
      */
     public void heal(int amount){
+        if(!owner.isAlive()) return;
         this.hp = Math.min(this.maxHP, this.hp + amount);
     }
 }
