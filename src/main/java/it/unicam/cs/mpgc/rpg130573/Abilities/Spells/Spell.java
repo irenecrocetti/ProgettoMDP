@@ -9,9 +9,8 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Contiene i metodi che riguardano un incantesimo generico
  *
  * Ogni implementazione di un incantesimo deve includere il nome,
- * il costo in XP, il costo in stamina, il livello a cui viene
- * sbloccato, il tipo di target che accetta, il personaggio che
- * può usare l'incantesimo ed il tipo di incantesimo
+ * il tipo di target che accetta, il personaggio che
+ * può usare l'incantesimo e il tipo di incantesimo
  */
 public interface Spell {
 
@@ -24,13 +23,6 @@ public interface Spell {
     boolean execute(Entity source, Entity target);
 
     String getName();
-
-    int getXPCost();
-
-    int getStaminaCost();
-
-    int getUnlockLevel();
-
     /**
      * @return il tipo di entità a cui e diretto l'incantesimo
      */

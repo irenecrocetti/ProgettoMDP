@@ -4,6 +4,12 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 import it.unicam.cs.mpgc.rpg130573.Model.Managers.WinxStatusManager;
 import it.unicam.cs.mpgc.rpg130573.Model.Winx.Winx;
 
+/**
+ * Contiene i metodi che descrivono un incantesimo che può essere usato solo da
+ * un'entità Winx.
+ * Ogni incantesimo deve avere informazioni su il costo in stamina, il costo
+ * in XP e il livello a cui viene sbloccato.
+ */
 public abstract class WinxSpell implements Spell{
 
     @Override
@@ -17,6 +23,12 @@ public abstract class WinxSpell implements Spell{
         }
         return false;
     }
+
+    protected abstract int getStaminaCost();
+
+    protected abstract int getXPCost();
+
+    protected abstract int getUnlockLevel();
 
     protected abstract void doEffect(Entity source, Entity target);
 }

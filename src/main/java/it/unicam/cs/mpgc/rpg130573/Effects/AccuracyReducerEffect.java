@@ -1,5 +1,8 @@
 package it.unicam.cs.mpgc.rpg130573.Effects;
 
+/**
+ * Classe che implementa un effetto che riduce l'accuracy dei nemici
+ */
 public class AccuracyReducerEffect extends AbstractEffect{
     private final int accuracyPenalty;
     private final String name;

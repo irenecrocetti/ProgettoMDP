@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Effects;
 
 /**
- * Classe che implementa uno scudo
+ * Classe che implementa un effetto scudo
  */
 public class ShieldEffect extends AbstractEffect{
     private boolean isConsumed;

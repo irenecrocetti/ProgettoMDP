@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Effects;
 
 /**
- * Classe che serve semplicemente ad evitare di riscrivere gli stessi metodi per ogni effetto
+ * Classe che serve semplicemente a evitare di riscrivere gli stessi metodi per ogni effetto
  */
 public abstract class AbstractEffect implements Effect{
     private int remainingTurns;
