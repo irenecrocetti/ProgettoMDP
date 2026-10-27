@@ -17,7 +17,7 @@ public class SunShower extends WinxSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        source.getStatusManager().heal(HEAL_AMOUNT);
+        target.getStatusManager().heal(HEAL_AMOUNT);
     }
 
     @Override

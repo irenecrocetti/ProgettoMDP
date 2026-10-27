@@ -14,11 +14,13 @@ public class Firewall extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
-    public static final int DURATION = 2;
+    public static final int DURATION = 3;
+    public static final int DAMAGE_REDUCTION_PERCENT = 60;
+    public static final int MAX_HITS = 3;
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        source.getEffectManager().addEffect(new ShieldEffect(DURATION));
+        source.getEffectManager().addEffect(new ShieldEffect(DURATION, DAMAGE_REDUCTION_PERCENT, MAX_HITS));
     }
 
     @Override

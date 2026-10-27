@@ -17,4 +17,6 @@ public abstract class AbstractEffect implements Effect{
     public int getRemainingTurns() {
         return this.remainingTurns;
     }
+
+    protected void setRemainingTurns(int turns) { this.remainingTurns = turns; }
 }

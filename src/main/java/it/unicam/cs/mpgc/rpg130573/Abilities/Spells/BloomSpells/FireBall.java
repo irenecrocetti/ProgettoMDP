@@ -15,8 +15,8 @@ public class FireBall extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
-    public static final int DAMAGE = 20;
-    public static final int BURN_DAMAGE = 7;
+    public static final int DAMAGE = 25;
+    public static final int BURN_DAMAGE = 5;
     public static final int BURN_DURATION = 3;
 
     @Override

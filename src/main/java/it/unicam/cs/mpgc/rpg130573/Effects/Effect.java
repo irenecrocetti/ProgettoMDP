@@ -46,4 +46,13 @@ public interface Effect {
      * Chiamato a ogni fine turno dall'owner, prima del tick della durata
      */
     default void onTurnEnd(Entity owner) {}
+
+    /**
+     * Prova a fondere un effetto omonimo in arrivo in questo, già attivo.
+     *
+     * @param incoming il nuovo effetto con lo stesso nome
+     * @return true se l'effetto è stato fuso (e quindi il nuovo va scartato),
+     *         false se questo effetto non supporta il refresh e va sostituito
+     */
+    default boolean refresh(Effect incoming) { return false; }
 }

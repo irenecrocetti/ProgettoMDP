@@ -15,9 +15,9 @@ public class ElectroRay extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
-    public static final int DAMAGE = 10;
-    public static final int ELECTRIFY_DAMAGE = 5;
-    public static final int ELECTRIFY_DURATION = 4;
+    public static final int DAMAGE = 20;
+    public static final int ELECTRIFY_DAMAGE = 4;
+    public static final int ELECTRIFY_DURATION = 3;
 
     @Override
     protected void doEffect(Entity source, Entity target) {

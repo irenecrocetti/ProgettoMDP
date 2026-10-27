@@ -11,9 +11,9 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Classe che implementa un incantesimo di base per Darkar
  */
 public class DarkarBaseSpell extends VillainSpell {
-    private final int DAMAGE = 30;
-    private final int SICKNESS_DAMAGE = 5;
-    private final int SICKNESS_DURATION = 3;
+    private static final int DAMAGE = 30;
+    private static final int SICKNESS_DAMAGE = 4;
+    private static final int SICKNESS_DURATION = 3;
 
     @Override
     protected void doEffect(Entity source, Entity target) {

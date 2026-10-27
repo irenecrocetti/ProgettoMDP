@@ -10,7 +10,7 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Classe che implementa un incantesimo di base per Stormy
  */
 public class StormyBaseSpell extends VillainSpell {
-    private final int DAMAGE = 20;
+    private static final int DAMAGE = 22;
 
     @Override
     protected void doEffect(Entity source, Entity target) {

@@ -16,12 +16,22 @@ public class EffectManager {
 
     public EffectManager(Entity owner){ this.owner = owner; }
 
+    /**
+     * Metodo che aggiunge un nuovo effetto a un'entità.
+     * Se il metodo trova un effetto dello stesso tipo (con lo stesso nome) prova
+     * ad "aggiornare" l'effetto secondo il metodo refresh() presente nelle classi
+     * degli effetti.
+     *
+     * @param effect l'effetto da aggiungere
+     */
     public void addEffect(Effect effect) {
         if (!owner.isAlive()) return;
+
         Iterator<Effect> it = effects.iterator();
         while (it.hasNext()) {
             Effect old = it.next();
             if (old.getName().equals(effect.getName())) {
+                if (old.refresh(effect)) return;
                 old.onExpire(owner);
                 it.remove();
                 break;

@@ -15,9 +15,9 @@ public class RisingSun extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
-    public static final int DAMAGE = 10;
+    public static final int DAMAGE = 15;
     public static final int DURATION = 2;
-    public static final int PENALTY = 20;
+    public static final int PENALTY = 25;
 
     @Override
     protected void doEffect(Entity source, Entity target) {

@@ -10,7 +10,7 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Classe che implementa un incantesimo base per Darcy
  */
 public class DarcyBaseSpell extends VillainSpell {
-    private final int DAMAGE = 20;
+    private static final int DAMAGE = 18;
 
     @Override
     protected void doEffect(Entity source, Entity target) {

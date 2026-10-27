@@ -11,9 +11,9 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Classe che implementa un incantesimo base per Icy
  */
 public class IcyBaseSpell extends VillainSpell {
-    private final int DAMAGE = 20;
-    private final int FROST_DURATION = 3;
-    private final int FROST_DAMAGE = 5;
+    private static final int DAMAGE = 15;
+    private static final int FROST_DURATION = 3;
+    private static final int FROST_DAMAGE = 4;
 
     @Override
     protected void doEffect(Entity source, Entity target) {
