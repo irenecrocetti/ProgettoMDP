@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Villains;
 
+import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.VillainSpells.ValtorBaseSpell;
+
 public class Valtor extends Villain{
     private static final int VALTOR_HEALTH = 300;
     private static final int VALTOR_ACCURACY = 90;
@@ -7,6 +9,6 @@ public class Valtor extends Villain{
 
     public Valtor(){
         super("Valtor", VALTOR_HEALTH, VALTOR_HEALTH, VALTOR_ACCURACY, VALTOR_XP_RELEASED);
-        //TODO aggiungere incantesimi
+        addSpell(new ValtorBaseSpell());
     }
 }

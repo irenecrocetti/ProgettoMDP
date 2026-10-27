@@ -7,6 +7,10 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
+/**
+ * Applica un danno sul nemico, che viene "elettrizzato" applicando un
+ * danno nel tempo
+ */
 public class ElectroRay extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;

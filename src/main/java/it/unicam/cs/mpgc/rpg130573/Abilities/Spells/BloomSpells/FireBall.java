@@ -8,7 +8,8 @@ import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 /**
- * Scaglia una palla di fuoco contro un nemico causando un determinato danno
+ * Scaglia una palla di fuoco contro un nemico causando un determinato danno.
+ * Applica un danno del tempo "bruciando" il nemico.
  */
 public class FireBall extends WinxSpell {
     public static final int XP_COST = 0;

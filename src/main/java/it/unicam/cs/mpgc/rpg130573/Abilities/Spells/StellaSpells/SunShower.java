@@ -6,6 +6,9 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
+/**
+ * Guarisce Stella
+ */
 public class SunShower extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;

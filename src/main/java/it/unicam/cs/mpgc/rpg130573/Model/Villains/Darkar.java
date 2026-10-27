@@ -1,5 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Villains;
 
+import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.VillainSpells.DarkarBaseSpell;
+
 public class Darkar extends Villain{
     private static final int DARKAR_HEALTH = 200;
     private static final int DARKAR_ACCURACY = 80;
@@ -7,6 +9,6 @@ public class Darkar extends Villain{
 
     public Darkar(){
         super("Darkar", DARKAR_HEALTH, DARKAR_HEALTH, DARKAR_ACCURACY, DARKAR_XP_RELEASED);
-        //TODO aggiungere incantesimi
+        this.addSpell(new DarkarBaseSpell());
     }
 }

@@ -7,6 +7,10 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.Effects.AccuracyReducerEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
+/**
+ * Scaglia della luce solare contro il nemico, che viene "accecato" applicando
+ * un danno temporaneo alla sua accuracy.
+ */
 public class RisingSun extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;

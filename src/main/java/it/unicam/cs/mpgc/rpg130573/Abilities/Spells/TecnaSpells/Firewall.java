@@ -7,6 +7,9 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.Effects.ShieldEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
+/**
+ * Applica uno scudo su Tecna
+ */
 public class Firewall extends WinxSpell {
     public static final int XP_COST = 0;
     public static final int STAMINA_COST = 20;

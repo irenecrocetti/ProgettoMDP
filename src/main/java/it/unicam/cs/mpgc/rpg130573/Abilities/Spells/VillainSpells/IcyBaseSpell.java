@@ -4,31 +4,40 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.VillainSpell;
+import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
+/**
+ * Classe che implementa un incantesimo base per Icy
+ */
 public class IcyBaseSpell extends VillainSpell {
+    private final int DAMAGE = 20;
+    private final int FROST_DURATION = 3;
+    private final int FROST_DAMAGE = 5;
+
     @Override
     protected void doEffect(Entity source, Entity target) {
-
+        target.getStatusManager().takeDamage(DAMAGE);
+        target.getEffectManager().addEffect(new DamageOverTimeEffect("Frost", FROST_DURATION, FROST_DAMAGE));
     }
 
     @Override
     public String getName() {
-        return "";
+        return "Frostbite";
     }
 
     @Override
     public TargetType getTargetType() {
-        return null;
+        return TargetType.ENEMY;
     }
 
     @Override
     public CharacterAllocation getCharacterAllocation() {
-        return null;
+        return CharacterAllocation.ICY;
     }
 
     @Override
     public SpellType getSpellType() {
-        return null;
+        return SpellType.OFFENSE;
     }
 }
