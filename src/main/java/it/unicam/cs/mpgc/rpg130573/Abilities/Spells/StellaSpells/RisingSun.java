@@ -16,13 +16,13 @@ public class RisingSun extends WinxSpell {
     public static final int STAMINA_COST = 20;
     public static final int UNLOCKED_AT_LEVEL = 1;
     public static final int DAMAGE = 15;
-    public static final int DURATION = 2;
-    public static final int PENALTY = 25;
+    public static final int BLINDNESS_DURATION = 2;
+    public static final int BLINDNESS_PENALTY = 25;
 
     @Override
     protected void doEffect(Entity source, Entity target) {
         target.getStatusManager().takeDamage(DAMAGE);
-        target.getEffectManager().addEffect(new AccuracyReducerEffect("Blindness", DURATION, PENALTY));
+        target.getEffectManager().addEffect(new AccuracyReducerEffect("Blindness", BLINDNESS_DURATION, BLINDNESS_PENALTY));
     }
 
     @Override
