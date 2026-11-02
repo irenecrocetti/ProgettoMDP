@@ -14,6 +14,8 @@ public abstract class WinxSpell implements Spell{
 
     @Override
     public final boolean execute(Entity source, Entity target){
+        if(!source.isAlive()) return false;
+        if(!target.isAlive()) return false;
         if(!(source instanceof Winx)) return false;
         WinxStatusManager sm = ((Winx) source).getStatusManager();
         if(sm.getStamina() >= getStaminaCost()){
@@ -24,11 +26,11 @@ public abstract class WinxSpell implements Spell{
         return false;
     }
 
-    protected abstract int getStaminaCost();
+    public abstract int getStaminaCost();
 
-    protected abstract int getXPCost();
+    public abstract int getXPCost();
 
-    protected abstract int getUnlockLevel();
+    public abstract int getUnlockLevel();
 
     protected abstract void doEffect(Entity source, Entity target);
 }

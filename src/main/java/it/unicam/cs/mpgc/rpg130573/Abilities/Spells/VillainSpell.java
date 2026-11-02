@@ -11,6 +11,8 @@ public abstract class VillainSpell implements Spell{
 
     @Override
     public boolean execute(Entity source, Entity target) {
+        if(!source.isAlive()) return false;
+        if(!target.isAlive()) return false;
         if(!(source instanceof Villain)) return false;
         doEffect(source, target);
         return true;

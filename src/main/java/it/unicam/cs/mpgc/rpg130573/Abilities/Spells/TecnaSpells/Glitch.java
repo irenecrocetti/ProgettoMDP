@@ -4,7 +4,7 @@ import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.WinxSpell;
-import it.unicam.cs.mpgc.rpg130573.Effects.AccuracyReducerEffect;
+import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 public class Glitch extends WinxSpell {
@@ -16,24 +16,24 @@ public class Glitch extends WinxSpell {
     public static final int ELECTRIFY_DURATION = 3;
 
     @Override
-    protected int getStaminaCost() {
+    public int getStaminaCost() {
         return STAMINA_COST;
     }
 
     @Override
-    protected int getXPCost() {
+    public int getXPCost() {
         return XP_COST;
     }
 
     @Override
-    protected int getUnlockLevel() {
+    public int getUnlockLevel() {
         return UNLOCKED_AT_LEVEL;
     }
 
     @Override
     protected void doEffect(Entity source, Entity target) {
         target.getStatusManager().takeDamage(DAMAGE);
-        target.getEffectManager().addEffect(new AccuracyReducerEffect("Electrify", ELECTRIFY_DURATION, ELECTRIFY_DAMAGE));
+        target.getEffectManager().addEffect(new DamageOverTimeEffect("Electrify", ELECTRIFY_DURATION, ELECTRIFY_DAMAGE));
     }
 
     @Override

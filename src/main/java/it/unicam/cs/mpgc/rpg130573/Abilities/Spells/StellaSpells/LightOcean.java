@@ -16,17 +16,17 @@ public class LightOcean extends WinxSpell {
     public static final int BLINDNESS_DURATION = 3;
 
     @Override
-    protected int getStaminaCost() {
+    public int getStaminaCost() {
         return STAMINA_COST;
     }
 
     @Override
-    protected int getXPCost() {
+    public int getXPCost() {
         return XP_COST;
     }
 
     @Override
-    protected int getUnlockLevel() {
+    public int getUnlockLevel() {
         return UNLOCKED_AT_LEVEL;
     }
 
