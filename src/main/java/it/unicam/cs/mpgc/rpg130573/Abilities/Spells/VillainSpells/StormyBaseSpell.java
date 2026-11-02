@@ -14,7 +14,7 @@ public class StormyBaseSpell extends VillainSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
     }
 
     @Override

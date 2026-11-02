@@ -11,13 +11,13 @@ import it.unicam.cs.mpgc.rpg130573.Model.Entity;
  * Classe che implementa un incantesimo di base per Valtor
  */
 public class ValtorBaseSpell extends VillainSpell {
-    private final int DAMAGE = 35;
-    private final int BURN_DURATION = 4;
-    private final int BURN_DAMAGE = 7;
+    private static final int DAMAGE = 35;
+    private static final int BURN_DURATION = 4;
+    private static final int BURN_DAMAGE = 7;
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
         target.getEffectManager().addEffect(new DamageOverTimeEffect("Burn", BURN_DURATION, BURN_DAMAGE));
     }
 

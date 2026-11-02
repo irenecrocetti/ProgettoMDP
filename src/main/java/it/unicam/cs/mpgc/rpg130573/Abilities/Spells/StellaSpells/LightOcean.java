@@ -32,7 +32,7 @@ public class LightOcean extends WinxSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
         target.getEffectManager().addEffect(new AccuracyReducerEffect("Blindness", BLINDNESS_DURATION, BLINDNESS_PENALTY));
     }
 

@@ -17,7 +17,7 @@ public class IcyBaseSpell extends VillainSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
         target.getEffectManager().addEffect(new DamageOverTimeEffect("Frost", FROST_DURATION, FROST_DAMAGE));
     }
 

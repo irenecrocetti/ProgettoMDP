@@ -21,7 +21,7 @@ public class ElectroRay extends WinxSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
         target.getEffectManager().addEffect(new DamageOverTimeEffect("Electrify", ELECTRIFY_DURATION, ELECTRIFY_DAMAGE));
     }
 

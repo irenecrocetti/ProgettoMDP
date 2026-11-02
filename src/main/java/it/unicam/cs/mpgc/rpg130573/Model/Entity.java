@@ -19,7 +19,6 @@ public abstract class Entity {
     public Entity(String name, StatusManager statusManager) {
         this.name = name;
         this.statusManager = statusManager;
-        this.statusManager.setOwner(this);
         this.effectManager = new EffectManager(this);
     }
 
@@ -30,11 +29,23 @@ public abstract class Entity {
     public StatusManager getStatusManager() {return this.statusManager;}
     public EffectManager getEffectManager() {return this.effectManager;}
 
+    /**
+     * @return una copia non modificabile degli incantesimi posseduti
+     */
+    public List<Spell> getSpells() {return List.copyOf(spells);}
+
     public void setHp(int amount) {this.statusManager.setHp(amount);}
     public void setMaxHP(int amount) {this.statusManager.setMaxHP(amount);}
 
     protected void addSpell(Spell spell){
         if (!hasSpell(spell)) spells.add(spell);
+    }
+
+    /**
+     * Applica un danno passando per i modificatori degli effetti (scudi, ecc.)
+     */
+    public void takeDamage(int damage){
+        statusManager.loseHp(effectManager.applyIncomingDamageModifiers(damage));
     }
 
     /**

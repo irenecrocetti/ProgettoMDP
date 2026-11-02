@@ -17,7 +17,7 @@ public class DarkarBaseSpell extends VillainSpell {
 
     @Override
     protected void doEffect(Entity source, Entity target) {
-        target.getStatusManager().takeDamage(DAMAGE);
+        target.takeDamage(DAMAGE);
         target.getEffectManager().addEffect(new DamageOverTimeEffect("Sickness", SICKNESS_DURATION, SICKNESS_DAMAGE));
     }
 
