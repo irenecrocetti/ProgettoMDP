@@ -49,5 +49,14 @@ public class Winx extends Entity {
         addSpell(spell);
         return true;
     }
+
+    /**
+     * Ristabilisce le statistiche della Winx allo stato iniziale
+     */
+    public void recoverAfterBattle(){
+        setStamina(getMaxStamina());
+        setHp(getMaxHP());
+        getEffectManager().clear();
+    }
 }
 

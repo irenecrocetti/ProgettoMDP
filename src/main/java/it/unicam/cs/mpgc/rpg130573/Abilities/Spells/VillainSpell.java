@@ -11,8 +11,6 @@ import java.util.Random;
  * Villain.
  */
 public abstract class VillainSpell implements Spell{
-    private final Random random = new Random();
-
     @Override
     public SpellResult execute(Entity source, Entity target) {
         if(!source.isAlive() || !target.isAlive()) return SpellResult.CANNOT_CAST;
@@ -23,6 +21,7 @@ public abstract class VillainSpell implements Spell{
     }
 
     private boolean rollHit(Villain v){
+        Random random = new Random();
         return random.nextInt(100) < v.getEffectiveAccuracy();
     }
 

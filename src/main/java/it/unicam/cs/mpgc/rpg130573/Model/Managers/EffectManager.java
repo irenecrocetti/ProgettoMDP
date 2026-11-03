@@ -72,6 +72,16 @@ public class EffectManager {
         }
     }
 
+    /**
+     * Toglie tutti gli effetti presenti su un'entità
+     */
+    public void clear(){
+        for(Effect effect : effects) {
+            effect.onExpire(owner);
+        }
+        effects.clear();
+    }
+
     public List<Effect> getActiveEffects() { return List.copyOf(effects); }
 
 }
