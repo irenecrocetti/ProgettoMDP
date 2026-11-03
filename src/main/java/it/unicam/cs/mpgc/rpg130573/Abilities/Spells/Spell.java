@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.Abilities.Spells;
 
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.CharacterAllocation;
+import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellResult;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
@@ -20,7 +21,7 @@ public interface Spell {
      * @param source l'entità che esegue l'incantesimo
      * @param target l'entità su cui si scaglia l'incantesimo
      */
-    boolean execute(Entity source, Entity target);
+    SpellResult execute(Entity source, Entity target);
 
     String getName();
     /**

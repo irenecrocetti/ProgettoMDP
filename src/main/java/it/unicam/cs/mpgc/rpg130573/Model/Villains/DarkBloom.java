@@ -1,7 +1,5 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Villains;
 
-import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.BloomSpells.FireBall;
-import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.BloomSpells.FlameShield;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.VillainSpells.DarkBloomBaseSpell;
 
 public class DarkBloom extends Villain{

@@ -1,9 +1,9 @@
 package it.unicam.cs.mpgc.rpg130573.Abilities.Spells;
 
+import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.SpellResult;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 import it.unicam.cs.mpgc.rpg130573.Model.Managers.WinxStatusManager;
-import it.unicam.cs.mpgc.rpg130573.Model.Villains.DarkBloom;
 import it.unicam.cs.mpgc.rpg130573.Model.Winx.Winx;
 
 /**
@@ -15,17 +15,17 @@ import it.unicam.cs.mpgc.rpg130573.Model.Winx.Winx;
 public abstract class WinxSpell implements Spell{
 
     @Override
-    public final boolean execute(Entity source, Entity target){
-        if(!source.isAlive()) return false;
-        if(getTargetType() != TargetType.SELF && !target.isAlive()) return false;
-        if(!(source instanceof Winx)) return false;
+    public final SpellResult execute(Entity source, Entity target){
+        if(!source.isAlive()) return SpellResult.CANNOT_CAST;
+        if(getTargetType() != TargetType.SELF && !target.isAlive()) return SpellResult.CANNOT_CAST;
+        if(!(source instanceof Winx)) return SpellResult.CANNOT_CAST;
         WinxStatusManager sm = ((Winx) source).getStatusManager();
         if(sm.getStamina() >= getStaminaCost()){
             sm.decreaseStamina(getStaminaCost());
             doEffect(source, target);
-            return true;
+            return SpellResult.HIT;
         }
-        return false;
+        return SpellResult.CANNOT_CAST;
     }
 
     public abstract int getStaminaCost();
