@@ -15,6 +15,10 @@ public class DamageOverTimeEffect extends AbstractEffect{
         this.damagePerTurn = damagePerTurn;
     }
 
+    /**
+     * Il danno in questione bypassa gli scudi e usa direttamente
+     * loseHp all'interno dello StatusManager dell'owner
+     */
     @Override
     public void onTurnEnd(Entity owner) {
         owner.getStatusManager().loseHp(damagePerTurn);

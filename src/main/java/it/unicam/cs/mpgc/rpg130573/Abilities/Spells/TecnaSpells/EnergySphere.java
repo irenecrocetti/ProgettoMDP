@@ -8,11 +8,11 @@ import it.unicam.cs.mpgc.rpg130573.Effects.DamageOverTimeEffect;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 public class EnergySphere extends WinxSpell {
-    public static final int STAMINA_COST = 30;
-    public static final int XP_COST = 100;
-    public static final int UNLOCKED_AT_LEVEL = 2;
-    public static final int DAMAGE = 32;
-    public static final int ELECTRIFY_DAMAGE = 4;
+    public static final int STAMINA_COST = 40;
+    public static final int XP_COST = 200;
+    public static final int UNLOCKED_AT_LEVEL = 3;
+    public static final int DAMAGE = 40;
+    public static final int ELECTRIFY_DAMAGE = 5;
     public static final int ELECTRIFY_DURATION = 3;
 
     @Override

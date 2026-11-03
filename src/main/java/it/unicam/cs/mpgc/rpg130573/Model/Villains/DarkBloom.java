@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg130573.Model.Villains;
 
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.BloomSpells.FireBall;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.BloomSpells.FlameShield;
+import it.unicam.cs.mpgc.rpg130573.Abilities.Spells.VillainSpells.DarkBloomBaseSpell;
 
 public class DarkBloom extends Villain{
     private static final int DARK_BLOOM_HEALTH = 200;
@@ -10,6 +11,6 @@ public class DarkBloom extends Villain{
 
     public DarkBloom(){
         super("DarkBloom", DARK_BLOOM_HEALTH, DARK_BLOOM_HEALTH, DARK_BLOOM_ACCURACY, DARK_BLOOM_XP_RELEASED);
-        //TODO aggiungere incantesimi
+        addSpell(new DarkBloomBaseSpell());
     }
 }

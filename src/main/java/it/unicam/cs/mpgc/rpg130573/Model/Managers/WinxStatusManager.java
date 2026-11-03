@@ -40,7 +40,9 @@ public class WinxStatusManager extends StatusManager{
         if(this.level >= MAX_LEVEL) return false;
         this.level++;
         this.setMaxHP(this.getMaxHP() + 20);
+        this.setHp(this.getMaxHP());
         this.setMaxStamina(this.getMaxStamina() + 20);
+        this.setStamina(this.getMaxStamina());
         return true;
     }
 

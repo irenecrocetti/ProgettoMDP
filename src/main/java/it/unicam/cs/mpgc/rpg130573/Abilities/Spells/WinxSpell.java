@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg130573.Abilities.Spells;
 import it.unicam.cs.mpgc.rpg130573.Abilities.Enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 import it.unicam.cs.mpgc.rpg130573.Model.Managers.WinxStatusManager;
+import it.unicam.cs.mpgc.rpg130573.Model.Villains.DarkBloom;
 import it.unicam.cs.mpgc.rpg130573.Model.Winx.Winx;
 
 /**
