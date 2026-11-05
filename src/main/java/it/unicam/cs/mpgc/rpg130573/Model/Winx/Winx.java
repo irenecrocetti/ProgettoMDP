@@ -50,13 +50,10 @@ public class Winx extends Entity {
         return true;
     }
 
-    /**
-     * Ristabilisce le statistiche della Winx allo stato iniziale
-     */
-    public void recoverAfterBattle(){
+    @Override
+    public void restore() {
+        super.restore();
         setStamina(getMaxStamina());
-        setHp(getMaxHP());
-        getEffectManager().clear();
     }
 }
 

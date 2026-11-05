@@ -1,6 +1,5 @@
 package it.unicam.cs.mpgc.rpg130573.Model.Managers;
 
-import it.unicam.cs.mpgc.rpg130573.Model.Entity;
 
 /**
  * Classe manager che gestisce le caratteristiche che hanno in comune tutte le entità

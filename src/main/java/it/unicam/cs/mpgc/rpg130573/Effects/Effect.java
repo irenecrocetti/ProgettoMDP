@@ -9,7 +9,8 @@ public interface Effect {
     String getName();
 
     /**
-     * Ritorna i turni rimanenti
+     * Ritorna i turni rimanenti. La durata include il turno in cui l'effetto
+     * viene applicato (il tick avviene a fine turno, anche quello del lancio).
      */
     int getRemainingTurns();
 

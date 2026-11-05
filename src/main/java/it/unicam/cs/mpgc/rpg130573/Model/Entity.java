@@ -59,4 +59,12 @@ public abstract class Entity {
         }
         return false;
     }
+
+    /**
+     * Riporta l'entità allo stato iniziale dopo uno scontro
+     */
+    public void restore(){
+        setHp(getMaxHP());
+        effectManager.clear();
+    }
 }
