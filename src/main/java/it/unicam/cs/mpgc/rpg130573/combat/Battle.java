@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.combat;
 
 import it.unicam.cs.mpgc.rpg130573.abilities.enums.SpellResult;
+import it.unicam.cs.mpgc.rpg130573.abilities.enums.SpellType;
 import it.unicam.cs.mpgc.rpg130573.abilities.enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.abilities.spells.Spell;
 import it.unicam.cs.mpgc.rpg130573.combat.events.BattleContext;
@@ -118,6 +119,27 @@ public class Battle {
     }
 
     /**
+     * @return i bersagli validi (vivi) per l'incantesimo indicato, lanciato dalla
+     * Winx corrente. Lista vuota se nessuna Winx può agire o non possiede l'incantesimo.
+     * Per gli incantesimi SELF restituisce la sola Winx corrente.
+     */
+    public List<Entity> getValidTargets(Spell spell){
+        Winx winx = getCurrentWinx();
+        if(winx == null || spell == null || !winx.hasSpell(spell))
+            return List.of();
+        if(spell.getTargetType() == TargetType.SELF)
+            return List.of(winx);
+
+        List<? extends Entity> candidates =
+                (spell.getTargetType() == TargetType.ENEMY) ? villains : winxes;
+        return candidates.stream()
+                .filter(Entity::isAlive)
+                .filter(e -> isValidTarget(spell, e))
+                .map(e -> (Entity) e)
+                .toList();
+    }
+
+    /**
      * Fa agire tutti i nemici vivi.
      *
      * @return le azioni compiute, nell'ordine di esecuzione.
@@ -154,14 +176,23 @@ public class Battle {
             currentWinxIndex++;
     }
 
-    /** Il bersaglio deve esistere o comunque appartenere alla fazione richiesta */
+    /**
+     * Il bersaglio deve esistere o comunque appartenere alla fazione richiesta e
+     * se l'incantesimo è dannoso, non essere vulnerabile.
+     */
     private boolean isValidTarget(Spell spell, Entity target){
         if(target == null) return false;
+        if(isHarmful(spell) && target.isInvulnerable()) return false;
         return switch (spell.getTargetType()){
             case ENEMY -> villains.contains(target);
             case ALLY -> winxes.contains(target);
             case SELF -> true;
         };
+    }
+
+    private boolean isHarmful(Spell spell){
+        return spell.getSpellType() == SpellType.OFFENSE
+                || spell.getSpellType() == SpellType.DEBUFF;
     }
 
     private void advanceToNextWinx() {

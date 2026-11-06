@@ -7,27 +7,30 @@ package it.unicam.cs.mpgc.rpg130573.model.managers;
 public class StatusManager {
     private int hp;
     private int maxHP;
-    private boolean isAlive;
 
     public StatusManager(int hp, int maxHP){
         this.hp = hp;
         this.maxHP = maxHP;
-        this.isAlive = true;
     }
 
     public int getHp() {return this.hp;}
     public int getMaxHP() {return this.maxHP;}
-    public boolean isAlive() {return this.isAlive;}
+    public boolean isAlive() {return this.hp > 0;}
 
     public void setHp(int amount) {this.hp = amount;}
     public void setMaxHP(int amount) {this.maxHP = amount;}
+
+    /**
+     * @return true se l'entità è invulnerabile.
+     * Di default nessuna entità è invulnerabile. Le sottoclassi fanno override.
+     */
+    public boolean isInvulnerable() { return false; }
 
     /**
      * Applica il danno direttamente, senza passare per gli effetti
      */
     public void loseHp(int amount){
         this.hp = Math.max(0, this.hp - amount);
-        if(this.hp == 0) this.isAlive = false;
     }
 
     /**

@@ -13,6 +13,16 @@ public  class Villain extends Entity {
         this.XPReleased = XPReleased;
     }
 
+    /**
+     * Permette di creare un nemico con uno status manager specializzato.
+     * Come ad esempio uno che non gli permette di subire danno.
+     */
+    public Villain(String name, StatusManager statusManager, int accuracy, int XPReleased){
+        super(name, statusManager);
+        this.accuracy = accuracy;
+        this.XPReleased = XPReleased;
+    }
+
     public int getAccuracy() {return this.accuracy;}
     public int getXPReleased() {return this.XPReleased;}
 

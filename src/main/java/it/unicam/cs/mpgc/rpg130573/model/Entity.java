@@ -29,6 +29,8 @@ public abstract class Entity {
     public StatusManager getStatusManager() {return this.statusManager;}
     public EffectManager getEffectManager() {return this.effectManager;}
 
+    public boolean isInvulnerable() {return this.statusManager.isInvulnerable();}
+
     /**
      * @return una copia non modificabile degli incantesimi posseduti
      */
