@@ -3,16 +3,20 @@ package it.unicam.cs.mpgc.rpg130573.combat;
 import it.unicam.cs.mpgc.rpg130573.abilities.enums.SpellResult;
 import it.unicam.cs.mpgc.rpg130573.abilities.enums.TargetType;
 import it.unicam.cs.mpgc.rpg130573.abilities.spells.Spell;
-import it.unicam.cs.mpgc.rpg130573.combat.villainSelectors.RandomSpellChoice;
-import it.unicam.cs.mpgc.rpg130573.combat.villainSelectors.RandomTargeting;
-import it.unicam.cs.mpgc.rpg130573.combat.villainSelectors.SpellChoiceStrategy;
-import it.unicam.cs.mpgc.rpg130573.combat.villainSelectors.TargetingStrategy;
+import it.unicam.cs.mpgc.rpg130573.combat.events.BattleContext;
+import it.unicam.cs.mpgc.rpg130573.combat.events.BattleEvent;
+import it.unicam.cs.mpgc.rpg130573.combat.selectors.RandomSpellChoice;
+import it.unicam.cs.mpgc.rpg130573.combat.selectors.RandomTargeting;
+import it.unicam.cs.mpgc.rpg130573.combat.selectors.SpellChoiceStrategy;
+import it.unicam.cs.mpgc.rpg130573.combat.selectors.TargetingStrategy;
 import it.unicam.cs.mpgc.rpg130573.model.Entity;
 import it.unicam.cs.mpgc.rpg130573.model.winx.Winx;
 import it.unicam.cs.mpgc.rpg130573.model.villains.Villain;
 
+import javax.naming.Context;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Battle {
     private final List<Winx> winxes;
@@ -20,23 +24,31 @@ public class Battle {
     private final BattleManager battleManager;
     private final SpellChoiceStrategy spellChoice;
     private final TargetingStrategy targetingStrategy;
+    private final List<BattleEvent> pendingEvents;
+    private final Predicate<List<Villain>> victoryCondition;
 
     private int currentWinxIndex = 0;
 
     /** Costruttore con comportamento di default. */
-    public Battle(List<Winx> winxes, List<Villain> villains){
-        this(winxes, villains,
+    public Battle(List<Winx> winxes, List<Villain> villains,
+                  List<BattleEvent> events,
+                  Predicate<List<Villain>> victoryCondition){
+        this(winxes, villains, events, victoryCondition,
                 new BattleManager(),
                 new RandomSpellChoice(),
                 new RandomTargeting());
     }
 
     public Battle(List<Winx> winxes, List<Villain> villains,
+                  List<BattleEvent> events,
+                  Predicate<List<Villain>> victoryCondition,
                   BattleManager battleManager,
                   SpellChoiceStrategy spellChoice,
                   TargetingStrategy targetingStrategy){
         this.winxes = new ArrayList<>(winxes);
         this.villains = new ArrayList<>(villains);
+        this.pendingEvents = new ArrayList<>(events);
+        this.victoryCondition = victoryCondition;
         this.battleManager = battleManager;
         this.spellChoice = spellChoice;
         this.targetingStrategy = targetingStrategy;
@@ -53,10 +65,20 @@ public class Battle {
         startNewRound();
     }
 
-    public void startNewRound(){
+    /**
+     * Inizia un nuovo round: controlla gli eventi, rigenera la stamina e
+     * riporta il turno alla prima Winx viva. Gli eventi si controllano qui
+     * perché è l'unico momento in cui è sicuro modificare le liste dei
+     * combattenti (nessun turno in corso).
+     *
+     * @return gli eventi scattati, nell'ordine, perché la UI possa mostrarli
+     */
+    public List<BattleEvent> startNewRound(){
+        List<BattleEvent> triggered = checkEvents();
         battleManager.startNewRound(winxes);
         currentWinxIndex = 0;
         skipDeadWinxes();
+        return triggered;
     }
 
     /** @return la Winx che deve agire o null se tutte hanno giocato */
@@ -116,6 +138,9 @@ public class Battle {
         return log;
     }
 
+    /** @return true se la condizione di vittoria del livello è soddisfatta */
+    public boolean isWon() { return victoryCondition.test(villains); }
+
     public boolean winxesAlive() { return winxes.stream().anyMatch(Winx::isAlive); }
 
     public boolean villainsAlive() { return villains.stream().anyMatch(Entity::isAlive); }
@@ -142,5 +167,33 @@ public class Battle {
     private void advanceToNextWinx() {
         currentWinxIndex++;
         skipDeadWinxes();
+    }
+
+    private List<BattleEvent> checkEvents(){
+        BattleContext context = new Context();
+        List<BattleEvent> triggered = new ArrayList<>();
+        for(BattleEvent event : List.copyOf(pendingEvents)){
+            if(event.isTriggered(context)){
+                event.trigger(context);
+                pendingEvents.remove(event);
+                triggered.add(event);
+            }
+        }
+        return triggered;
+    }
+
+    private class Context implements BattleContext{
+
+        @Override
+        public List<Winx> getWinxes() { return Battle.this.getWinxes(); }
+
+        @Override
+        public List<Villain> getVillains() { return Battle.this.getVillains(); }
+
+        @Override
+        public void removeWinx(Winx winx) { winxes.remove(winx); }
+
+        @Override
+        public void addVillain(Villain villain) { villains.add(villain); }
     }
 }

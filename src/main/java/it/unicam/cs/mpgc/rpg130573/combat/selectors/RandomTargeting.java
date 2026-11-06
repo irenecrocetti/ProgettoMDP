@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130573.combat.villainSelectors;
+package it.unicam.cs.mpgc.rpg130573.combat.selectors;
 
 import it.unicam.cs.mpgc.rpg130573.model.Entity;
 

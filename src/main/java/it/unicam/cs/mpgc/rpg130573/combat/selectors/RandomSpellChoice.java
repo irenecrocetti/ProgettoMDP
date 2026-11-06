@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130573.combat.villainSelectors;
+package it.unicam.cs.mpgc.rpg130573.combat.selectors;
 
 import it.unicam.cs.mpgc.rpg130573.abilities.spells.Spell;
 import it.unicam.cs.mpgc.rpg130573.model.villains.Villain;

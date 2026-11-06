@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.levels;
 
+import it.unicam.cs.mpgc.rpg130573.combat.events.BattleEvent;
 import it.unicam.cs.mpgc.rpg130573.model.Entity;
 import it.unicam.cs.mpgc.rpg130573.model.villains.Villain;
 
@@ -31,5 +32,13 @@ public interface Level {
      */
     default boolean isWon(List<Villain> villains){
         return villains.stream().noneMatch(Entity::isAlive);
+    }
+
+    /**
+     * Crea gli eventi di questo livello. Di default non ce ne sono.
+     * Come per i nemici, vanno creati a ogni battaglia.
+     */
+    default List<BattleEvent> createEvents(){
+        return List.of();
     }
 }
