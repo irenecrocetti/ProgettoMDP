@@ -147,7 +147,7 @@ public class Battle {
         List<ActionResult> log = new ArrayList<>();
         for(Villain villain : villains){
             if(!villain.isAlive()) continue;
-            if(!winxesAlive()) break;
+            if(!winxesAlive() || isWon()) break;
 
             Spell spell = spellChoice.chooseSpell(villain);
             Entity target = targetingStrategy.chooseTarget(spell, villain, winxes, villains);
@@ -166,9 +166,9 @@ public class Battle {
 
     public boolean villainsAlive() { return villains.stream().anyMatch(Entity::isAlive); }
 
-    public boolean isFinished() { return !winxesAlive() || !villainsAlive(); }
+    public boolean isFinished() { return !winxesAlive() || isWon(); }
 
-    public boolean winxWon() { return winxesAlive() && !villainsAlive(); }
+    public boolean winxWon() { return winxesAlive() && isWon(); }
 
     private void skipDeadWinxes(){
         while(currentWinxIndex < winxes.size() && !winxes.get(currentWinxIndex).isAlive())
