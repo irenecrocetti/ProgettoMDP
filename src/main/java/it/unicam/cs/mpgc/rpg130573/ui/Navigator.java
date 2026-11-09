@@ -1,0 +1,10 @@
+package it.unicam.cs.mpgc.rpg130573.ui;
+
+/**
+ * Cambia la schermata visualizzata. Le view dipendono da questa interfaccia
+ * e non dalle altre view.
+ */
+public interface Navigator {
+    void showMainMenu();
+    void showLevelSelect();
+}
