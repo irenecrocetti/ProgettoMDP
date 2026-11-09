@@ -11,10 +11,9 @@ import it.unicam.cs.mpgc.rpg130573.combat.selectors.RandomTargeting;
 import it.unicam.cs.mpgc.rpg130573.combat.selectors.SpellChoiceStrategy;
 import it.unicam.cs.mpgc.rpg130573.combat.selectors.TargetingStrategy;
 import it.unicam.cs.mpgc.rpg130573.model.Entity;
-import it.unicam.cs.mpgc.rpg130573.model.winx.Winx;
 import it.unicam.cs.mpgc.rpg130573.model.villains.Villain;
+import it.unicam.cs.mpgc.rpg130573.model.winx.Winx;
 
-import javax.naming.Context;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;

@@ -38,4 +38,7 @@ public interface Spell {
      * @return il tipo di incantesimo
      */
     SpellType getSpellType();
+
+    /** Identificatore stabile usato per la persistenza, diverso dal nome mostrato. */
+    default String getId() { return getClass().getSimpleName(); }
 }

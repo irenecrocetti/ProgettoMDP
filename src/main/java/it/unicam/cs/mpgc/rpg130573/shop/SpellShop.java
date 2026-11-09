@@ -10,6 +10,7 @@ import it.unicam.cs.mpgc.rpg130573.abilities.spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.model.winx.Winx;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Shop in cui le Winx spendono gli xp per acquistare nuovi incantesimi.
@@ -78,5 +79,9 @@ public class SpellShop {
 
         buyer.learnSpell(spell);
         return PurchaseResult.SUCCESS;
+    }
+
+    public Optional<WinxSpell> findById(String id){
+        return catalog.stream().filter(s -> s.getId().equals(id)).findFirst();
     }
 }
