@@ -122,4 +122,15 @@ public class GameSession {
             throw new IllegalStateException("Lo shop non è usabile durante una battaglia");
         return shop.buy(buyer, spell);
     }
+
+    /**
+     * @throws IllegalArgumentException se il livello non esiste
+     */
+    public LevelStatus getLevelStatus(int levelId){
+        if(registry.getLevel(levelId).isEmpty())
+            throw new IllegalArgumentException("Livello inesistente: " + levelId);
+        if(levelId <= highestClearedLevel) return LevelStatus.COMPLETED;
+        if(levelId == highestClearedLevel + 1) return LevelStatus.AVAILABLE;
+        return LevelStatus.LOCKED;
+    }
 }
