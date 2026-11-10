@@ -41,7 +41,9 @@ public class MainMenuView extends VBox {
     }
 
     private void onNewGame(){
-        if(gameService.hasSave() && !confirmOverwrite()) return;
+        if(gameService.hasSave() &&
+                !Dialogs.confirm("Esiste già un salvataggio. Verrà sovrascritto al prossimo salvataggio. Continuare?"))
+            return;
         gameService.startNewGame();
         navigator.showLevelSelect();
     }
@@ -51,21 +53,7 @@ public class MainMenuView extends VBox {
             gameService.continueGame();
             navigator.showLevelSelect();
         } catch (PersistenceException e){
-            showError("Impossibile caricare il salvataggio:\n" + e.getMessage());
+            Dialogs.showError("Impossibile caricare il salvataggio:\n" + e.getMessage());
         }
-    }
-
-    private boolean confirmOverwrite(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Esiste già un salvataggio. Verrà sovrascritto al prossimo salvataggio. Continuare?",
-                ButtonType.YES, ButtonType.NO);
-        alert.setHeaderText(null);
-        return alert.showAndWait().filter(b -> b == ButtonType.YES).isPresent();
-    }
-
-    private void showError(String message){
-        Alert alert = new Alert(Alert.AlertType.ERROR, message, ButtonType.OK);
-        alert.setHeaderText(null);
-        alert.showAndWait();
     }
 }
