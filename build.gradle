@@ -17,7 +17,7 @@ javafx {
 }
 
 application {
-    mainClass = 'it.unicam.cs.mpgc.rpg130573.ui.WinxApp'
+    mainClass = 'it.unicam.cs.mpgc.rpg130573.app.WinxApp'
 }
 
 dependencies {

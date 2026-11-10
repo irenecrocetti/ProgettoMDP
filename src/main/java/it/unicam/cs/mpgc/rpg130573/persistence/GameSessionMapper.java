@@ -1,13 +1,13 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
-import it.unicam.cs.mpgc.rpg130573.abilities.spells.Spell;
-import it.unicam.cs.mpgc.rpg130573.abilities.spells.WinxSpell;
-import it.unicam.cs.mpgc.rpg130573.game.GameSession;
-import it.unicam.cs.mpgc.rpg130573.levels.LevelRegistry;
-import it.unicam.cs.mpgc.rpg130573.model.managers.WinxStatusManager;
-import it.unicam.cs.mpgc.rpg130573.model.winx.Winx;
-import it.unicam.cs.mpgc.rpg130573.model.winx.WinxFactory;
-import it.unicam.cs.mpgc.rpg130573.shop.SpellShop;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.Spell;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpell;
+import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
+import it.unicam.cs.mpgc.rpg130573.domain.level.LevelRegistry;
+import it.unicam.cs.mpgc.rpg130573.domain.model.managers.WinxStatusManager;
+import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
+import it.unicam.cs.mpgc.rpg130573.domain.model.winx.WinxFactory;
+import it.unicam.cs.mpgc.rpg130573.domain.shop.SpellShop;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
-import it.unicam.cs.mpgc.rpg130573.game.GameSession;
+import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
 
 import java.util.Optional;
 

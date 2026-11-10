@@ -1,6 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
-import it.unicam.cs.mpgc.rpg130573.abilities.enums.CharacterAllocation;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.enums.CharacterAllocation;
 
 import java.util.List;
 
