@@ -7,4 +7,6 @@ package it.unicam.cs.mpgc.rpg130573.ui;
 public interface Navigator {
     void showMainMenu();
     void showLevelSelect();
+    void showBattle(int levelId);
+    void showShop();
 }

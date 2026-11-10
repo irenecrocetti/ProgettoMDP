@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.ui;
 
 import it.unicam.cs.mpgc.rpg130573.game.GameService;
+import it.unicam.cs.mpgc.rpg130573.levels.Level;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -32,12 +33,27 @@ public class SceneNavigator implements Navigator{
 
     @Override
     public void showLevelSelect() {
-        Label label = new Label("Selezione livelli");
-        Button back = new Button("Torna al menu");
-        back.setOnAction(e -> showMainMenu());
-        VBox box = new VBox(16, label, back);
+        show(new LevelSelectView(gameService, this));
+    }
+
+    @Override
+    public void showBattle(int levelId) {
+        //TODO
+        show(placeholder("Battaglia, livello " + levelId, this::showLevelSelect));
+    }
+
+    @Override
+    public void showShop() {
+        //TODO
+        show(placeholder("Shop ", this::showLevelSelect));
+    }
+
+    private Parent placeholder(String text, Runnable onBack){
+        Button back = new Button("Indietro");
+        back.setOnAction(e -> onBack.run());
+        VBox box = new VBox(16, new Label(text), back);
         box.setAlignment(Pos.CENTER);
-        show(box);
+        return box;
     }
 
     private void show(Parent root){
