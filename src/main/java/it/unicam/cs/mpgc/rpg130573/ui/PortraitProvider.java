@@ -23,7 +23,7 @@ import java.util.Optional;
  * {@link PortraitKeys}; se nessuno esiste mostra un segnaposto.
  */
 public class PortraitProvider {
-    private static final String BASE_PATH = "/images/characters";
+    private static final String BASE_PATH = "/images/characters/";
     private static final double LOAD_HEIGHT = 300;
 
     /** Cache per singolo file: anche l'assenza di un file viene ricordata */
