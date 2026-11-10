@@ -159,6 +159,22 @@ public class Battle {
         return log;
     }
 
+    /**
+     * La Winx corrente rinuncia a lanciare un incantesimo: recupera della
+     * stamina e il turno passa alla Winx successiva. Evita che la battaglia
+     * si blocchi quando la Winx non può lanciare nessun incantesimo
+     *
+     * @return true se il turno è stato passato, false se nessuna Winx può agire
+     */
+    public boolean passTurn(){
+        Winx winx = getCurrentWinx();
+        if(winx == null) return false;
+        battleManager.restWinx(winx);
+        winx.getEffectManager().onTurnEnd();
+        advanceToNextWinx();
+        return true;
+    }
+
     /** @return true se la condizione di vittoria del livello è soddisfatta */
     public boolean isWon() { return victoryCondition.test(villains); }
 

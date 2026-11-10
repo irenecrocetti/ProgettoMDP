@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class BattleManager {
     private static final int STAMINA_REGEN_PER_ROUND = 3;
+    private static final int STAMINA_REGEN_ON_REST = 15;
 
     /**
      * Si assicura che ogni nemico inizi con il massimo della vita e che ogni winx
@@ -32,6 +33,14 @@ public class BattleManager {
                 winx.getStatusManager().regenerateStamina(STAMINA_REGEN_PER_ROUND);
             }
         }
+    }
+
+    /**
+     * Fa recuperare stamina a una Winx che sceglie di riposare
+     * invece che lanciare un incantesimo.
+     */
+    public void restWinx(Winx winx){
+        winx.getStatusManager().regenerateStamina(STAMINA_REGEN_ON_REST);
     }
 
 }
