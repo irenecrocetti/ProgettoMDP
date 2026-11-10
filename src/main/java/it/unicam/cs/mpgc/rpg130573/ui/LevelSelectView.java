@@ -15,13 +15,17 @@ import javafx.scene.layout.*;
 import javafx.scene.control.Label;
 
 public class LevelSelectView extends BorderPane {
+    private static final double PARTY_PORTRAIT_HEIGHT = 90;
+
     private final GameService gameService;
     private final Navigator navigator;
     private final Label feedback = new Label();
+    private final PortraitProvider portraits;
 
-    public LevelSelectView(GameService gameService, Navigator navigator){
+    public LevelSelectView(GameService gameService, Navigator navigator, PortraitProvider portraits){
         this.gameService = gameService;
         this.navigator = navigator;
+        this.portraits = portraits;
         GameSession session = gameService.getCurrentSession();
 
         setPadding(new Insets(24));
@@ -110,11 +114,16 @@ public class LevelSelectView extends BorderPane {
             name.setStyle("-fx-font-weight: bold;");
             Label stats = new Label(String.format("Livello %d   XP %d%nHP %d   Stamina %d",
                     winx.getLevel(), winx.getXp(), winx.getMaxHP(), winx.getMaxStamina()));
-            panel.getChildren().add(new VBox(2, name, stats));
+
+            HBox row = new HBox(10,
+                    portraits.createPortrait(winx, PARTY_PORTRAIT_HEIGHT),
+                    new VBox(2, name, stats));
+            row.setAlignment(Pos.CENTER_LEFT);
+            panel.getChildren().add(row);
         }
 
         panel.setPadding(new Insets(0,0,0,24));
-        panel.setMinWidth(200);
+        panel.setMinWidth(280);
         return panel;
     }
 

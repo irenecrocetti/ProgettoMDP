@@ -1,11 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.ui;
 
 import it.unicam.cs.mpgc.rpg130573.game.GameService;
-import it.unicam.cs.mpgc.rpg130573.levels.Level;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,10 +15,12 @@ public class SceneNavigator implements Navigator{
 
     private final Stage stage;
     private final GameService gameService;
+    private final PortraitProvider portraits;
 
-    public SceneNavigator(Stage stage, GameService gameService){
+    public SceneNavigator(Stage stage, GameService gameService, PortraitProvider portraits){
         this.stage = stage;
         this.gameService = gameService;
+        this.portraits = portraits;
     }
 
     @Override
@@ -33,7 +30,7 @@ public class SceneNavigator implements Navigator{
 
     @Override
     public void showLevelSelect() {
-        show(new LevelSelectView(gameService, this));
+        show(new LevelSelectView(gameService, this, portraits));
     }
 
     @Override

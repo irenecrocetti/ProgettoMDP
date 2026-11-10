@@ -28,7 +28,7 @@ public class WinxApp extends Application {
         SaveService saveService = new SaveService(new JsonSaveRepository(saveFile), mapper);
         GameService gameService = new GameService(saveService);
 
-        SceneNavigator navigator = new SceneNavigator(stage, gameService);
+        SceneNavigator navigator = new SceneNavigator(stage, gameService, new PortraitProvider());
         stage.setTitle("Winx RPG");
         navigator.showMainMenu();
         stage.show();
