@@ -1,6 +1,9 @@
 package it.unicam.cs.mpgc.rpg130573.ui.navigation;
 
 import it.unicam.cs.mpgc.rpg130573.application.GameService;
+import it.unicam.cs.mpgc.rpg130573.application.battle.BattleController;
+import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
+import it.unicam.cs.mpgc.rpg130573.ui.view.BattleView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.LevelSelectView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.MainMenuView;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
@@ -13,8 +16,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SceneNavigator implements Navigator{
-    private static final double WIDTH = 1000;
-    private static final double HEIGHT = 700;
+    private static final double WIDTH = 1100;
+    private static final double HEIGHT = 760;
 
     private final Stage stage;
     private final GameService gameService;
@@ -38,8 +41,13 @@ public class SceneNavigator implements Navigator{
 
     @Override
     public void showBattle(int levelId) {
-        //TODO
-        show(placeholder("Battaglia, livello " + levelId, this::showLevelSelect));
+       try {
+           BattleController controller = new BattleController(gameService.getCurrentSession(), levelId);
+           show(new BattleView(controller, this, portraits));
+       } catch (IllegalStateException | IllegalArgumentException e){
+           Dialogs.showError("Impossibile avviare il livello:\n" + e.getMessage());
+           showLevelSelect();
+       }
     }
 
     @Override

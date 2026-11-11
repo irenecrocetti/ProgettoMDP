@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 
 public class CombatantCard extends VBox {
 
-    enum Highlight { NONE, ACTIVE, TARGETABLE }
+    public enum Highlight { NONE, ACTIVE, TARGETABLE }
 
     private static final double WIDTH = 160;
     private static final String HP_COLOR = "#c62828";
     private static final String STAMINA_COLOR = "#1565c0";
 
-    CombatantCard(Entity entity, Node portrait, Highlight highlight){
+    public CombatantCard(Entity entity, Node portrait, Highlight highlight){
         super(4);
         setAlignment(Pos.TOP_CENTER);
         setPadding(new Insets(8));

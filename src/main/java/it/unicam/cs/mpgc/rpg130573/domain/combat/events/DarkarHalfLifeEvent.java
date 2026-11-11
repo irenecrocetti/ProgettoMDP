@@ -42,6 +42,6 @@ public class DarkarHalfLifeEvent implements BattleEvent{
 
     @Override
     public String getMessage() {
-        return "Le Winx riescono a liberare le Pixie, ma Bloom viene catturarata e trasformata in Dark Bloom!";
+        return "Le Winx riescono a liberare le Pixie, ma Bloom viene catturata e trasformata in Dark Bloom!";
     }
 }
