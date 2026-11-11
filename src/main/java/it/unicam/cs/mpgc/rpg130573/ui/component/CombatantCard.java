@@ -32,7 +32,7 @@ public class CombatantCard extends VBox {
         setStyle(borderStyle(highlight));
         if(highlight == Highlight.TARGETABLE) setCursor(Cursor.HAND);
 
-        if(entity.isAlive()) dim(portrait);
+        if(!entity.isAlive()) dim(portrait);
 
         Label name = new Label(entity.isAlive() ? entity.getName() : entity.getName() + " (KO)");
         name.setStyle("-fx-font-weight: bold;");
