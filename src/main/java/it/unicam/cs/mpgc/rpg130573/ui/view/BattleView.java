@@ -20,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.*;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 public class BattleView extends BorderPane {
@@ -28,6 +29,7 @@ public class BattleView extends BorderPane {
     private final BattleController controller;
     private final Navigator navigator;
     private final PortraitProvider portraits;
+    private final BooleanSupplier autosave;
 
     private final HBox winxRow = new HBox(10);
     private final HBox villainRow = new HBox(10);
@@ -37,10 +39,11 @@ public class BattleView extends BorderPane {
     private Spell pendingSpell;
     private LevelOutcome outcome;
 
-    public BattleView(BattleController controller, Navigator navigator, PortraitProvider portraits){
+    public BattleView(BattleController controller, Navigator navigator, PortraitProvider portraits, BooleanSupplier autosave){
         this.controller = controller;
         this.navigator = navigator;
         this.portraits = portraits;
+        this.autosave = autosave;
 
         setPadding(new Insets(16));
         setTop(createTitle());
@@ -197,6 +200,8 @@ public class BattleView extends BorderPane {
         if (report.battleFinished()) {
             outcome = controller.complete();
             appendLog(outcome.won() ? "Le Winx hanno vinto!" : "Le Winx sono state sconfitte...");
+            if (outcome.won() && !autosave.getAsBoolean())
+                appendLog("Salvataggio automatico non riuscito: salva dalla selezione livelli.");
         }
         refresh();
     }

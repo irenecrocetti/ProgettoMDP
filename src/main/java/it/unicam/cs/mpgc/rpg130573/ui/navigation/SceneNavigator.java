@@ -43,7 +43,7 @@ public class SceneNavigator implements Navigator{
     public void showBattle(int levelId) {
        try {
            BattleController controller = new BattleController(gameService.getCurrentSession(), levelId);
-           show(new BattleView(controller, this, portraits));
+           show(new BattleView(controller, this, portraits, gameService::autosave));
        } catch (IllegalStateException | IllegalArgumentException e){
            Dialogs.showError("Impossibile avviare il livello:\n" + e.getMessage());
            showLevelSelect();

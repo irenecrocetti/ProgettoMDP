@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.application;
 
 import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
+import it.unicam.cs.mpgc.rpg130573.persistence.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.persistence.SaveService;
 
 /**
@@ -49,6 +50,21 @@ public class GameService {
         if(current == null)
             throw new IllegalStateException("Nessuna partita in corso");
         return current;
+    }
+
+    /**
+     * Salva la partita corrente senza propagare errori di persistenza: serve
+     * ai salvataggi automatici, che non devono interrompere il gioco.
+     *
+     * @return true se il salvataggio è riuscito, false altrimenti
+     */
+    public boolean autosave(){
+        try{
+            saveCurrent();
+            return true;
+        } catch (PersistenceException e) {
+            return false;
+        }
     }
 
     public void saveCurrent(){
