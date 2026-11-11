@@ -7,6 +7,7 @@ import it.unicam.cs.mpgc.rpg130573.ui.view.BattleView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.LevelSelectView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.MainMenuView;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
+import it.unicam.cs.mpgc.rpg130573.ui.view.ShopView;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -52,16 +53,7 @@ public class SceneNavigator implements Navigator{
 
     @Override
     public void showShop() {
-        //TODO
-        show(placeholder("Shop ", this::showLevelSelect));
-    }
-
-    private Parent placeholder(String text, Runnable onBack){
-        Button back = new Button("Indietro");
-        back.setOnAction(e -> onBack.run());
-        VBox box = new VBox(16, new Label(text), back);
-        box.setAlignment(Pos.CENTER);
-        return box;
+        show(new ShopView(gameService, this, portraits));
     }
 
     private void show(Parent root){
