@@ -15,7 +15,7 @@ public class GameSessionMapper {
     private final GameSessionFactory factory;
 
     public GameSessionMapper(GameSessionFactory factory){
-        this.factory = factory;
+        this.factory = Objects.requireNonNull(factory);
     }
 
     public GameSnapshot toSnapshot(GameSession session){
