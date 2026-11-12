@@ -1,6 +1,10 @@
 package it.unicam.cs.mpgc.rpg130573.domain.model.villains;
 
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.VillainSpells.DarcyBaseSpell;
+
+import it.unicam.cs.mpgc.rpg130573.domain.ability.enums.CharacterAllocation;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.StandardVillainSpell;
+
+import static it.unicam.cs.mpgc.rpg130573.domain.ability.spells.SpellBeahavior.damage;
 
 public class Darcy extends Villain{
     public static final int DARCY_HEALTH = 100;
@@ -9,7 +13,8 @@ public class Darcy extends Villain{
 
     public Darcy(){
         super("Darcy", DARCY_HEALTH, DARCY_HEALTH, DARCY_ACCURACY, DARCY_XP_RELEASED);
-        addSpell(new DarcyBaseSpell());
+        addSpell(StandardVillainSpell.attack("DarcyBaseSpell", "Kaos", CharacterAllocation.DARCY,
+                damage(18)));
     }
 }
 

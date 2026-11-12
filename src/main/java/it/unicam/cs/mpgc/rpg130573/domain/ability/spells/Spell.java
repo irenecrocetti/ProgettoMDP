@@ -39,6 +39,9 @@ public interface Spell {
      */
     SpellType getSpellType();
 
-    /** Identificatore stabile usato per la persistenza, diverso dal nome mostrato. */
-    default String getId() { return getClass().getSimpleName(); }
+    /**
+     * Identificatore stabile dell'incantesimo: serve a confrontare gli incantesimi e finisce
+     * nei salvataggi, quindi non va cambiato una volta pubblicato. Non è il nome mostrato.
+     */
+    String getId();
 }
