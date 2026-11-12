@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
 import com.fasterxml.jackson.core.JacksonException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
@@ -14,7 +15,8 @@ import java.util.Optional;
 
 public class JsonSaveRepository implements SaveRepository{
     private final ObjectMapper mapper = new ObjectMapper()
-            .enable(SerializationFeature.INDENT_OUTPUT);
+            .enable(SerializationFeature.INDENT_OUTPUT)
+            .enable(DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES);
     private final Path file;
 
     public JsonSaveRepository(Path file){
@@ -38,7 +40,10 @@ public class JsonSaveRepository implements SaveRepository{
     public Optional<GameSnapshot> load() {
         if(!exists()) return Optional.empty();
         try{
-            return Optional.of(mapper.readValue(file.toFile(), GameSnapshot.class));
+            GameSnapshot snapshot = mapper.readValue(file.toFile(), GameSnapshot.class);
+            if (snapshot == null)
+                throw new PersistenceException("File di salvataggio vuoto");
+            return Optional.of(snapshot);
         } catch (JacksonException e){
             throw new PersistenceException("File di salvataggio corrotto o non valido", e);
         } catch (IOException e){
