@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
+import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.Spell;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpell;
 import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;

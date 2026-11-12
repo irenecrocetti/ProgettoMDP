@@ -5,7 +5,7 @@ import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
 import it.unicam.cs.mpgc.rpg130573.application.session.LevelStatus;
 import it.unicam.cs.mpgc.rpg130573.domain.level.Level;
 import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
-import it.unicam.cs.mpgc.rpg130573.persistence.PersistenceException;
+import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
 import it.unicam.cs.mpgc.rpg130573.ui.navigation.Navigator;

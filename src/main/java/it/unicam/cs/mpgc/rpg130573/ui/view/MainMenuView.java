@@ -1,7 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.ui.view;
 
 import it.unicam.cs.mpgc.rpg130573.application.GameService;
-import it.unicam.cs.mpgc.rpg130573.persistence.PersistenceException;
+import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
 import it.unicam.cs.mpgc.rpg130573.ui.navigation.Navigator;
 import javafx.application.Platform;

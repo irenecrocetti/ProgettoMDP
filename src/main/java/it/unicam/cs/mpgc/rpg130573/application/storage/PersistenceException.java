@@ -1,4 +1,4 @@
-package it.unicam.cs.mpgc.rpg130573.persistence;
+package it.unicam.cs.mpgc.rpg130573.application.storage;
 
 /**
  * Eccezione dedicata, cosicché sia indipendente dal supporto su cui vengono

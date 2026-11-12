@@ -1,8 +1,11 @@
 package it.unicam.cs.mpgc.rpg130573.application;
 
 import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
-import it.unicam.cs.mpgc.rpg130573.persistence.PersistenceException;
+import it.unicam.cs.mpgc.rpg130573.application.storage.GameStorage;
+import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.persistence.SaveService;
+
+import java.util.Objects;
 
 /**
  * Gestisce il ciclo di vita della partita corrente: creazione, caricamento e
@@ -10,15 +13,15 @@ import it.unicam.cs.mpgc.rpg130573.persistence.SaveService;
  * (desktop, web, mobile) può usarla.
  */
 public class GameService {
-    private final SaveService saveService;
+    private final GameStorage storage;
     private GameSession current;
 
-    public GameService(SaveService saveService){
-        this.saveService = saveService;
+    public GameService(GameStorage storage){
+        this.storage = Objects.requireNonNull(storage);
     }
 
     public boolean hasSave(){
-        return saveService.hasSave();
+        return storage.hasSave();
     }
 
     /**
@@ -34,10 +37,10 @@ public class GameService {
      * Carica il salvataggio e lo rende la partita corrente.
      *
      * @throws IllegalStateException se non esiste alcun salvataggio
-     * @throws it.unicam.cs.mpgc.rpg130573.persistence.PersistenceException se il file è irraggiungibile
+     * @throws PersistenceException se il salvataggio non è leggibile
      */
     public GameSession continueGame() {
-        GameSession loaded = saveService.load()
+        GameSession loaded = storage.load()
                 .orElseThrow(() -> new IllegalStateException("Nessun salvataggio presente"));
         current = loaded;
         return current;
@@ -68,6 +71,6 @@ public class GameService {
     }
 
     public void saveCurrent(){
-        saveService.save(getCurrentSession());
+        storage.save(getCurrentSession());
     }
 }

@@ -1,10 +1,11 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
 import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
+import it.unicam.cs.mpgc.rpg130573.application.storage.GameStorage;
 
 import java.util.Optional;
 
-public class SaveService {
+public class SaveService implements GameStorage {
     private final SaveRepository repository;
     private final GameSessionMapper mapper;
 

@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg130573.persistence;
 import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 
 import java.io.IOException;
 import java.nio.file.Files;
