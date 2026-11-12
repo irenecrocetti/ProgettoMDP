@@ -1,13 +1,8 @@
 package it.unicam.cs.mpgc.rpg130573.domain.shop;
 
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.DragonFury;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.HeatFlare;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.Spell;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.StellaSpells.LightOcean;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.StellaSpells.SunBolt;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.TecnaSpells.EnergySphere;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.TecnaSpells.Glitch;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpell;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpells;
 import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
 
 import java.util.List;
@@ -33,9 +28,9 @@ public class SpellShop {
      */
     public static SpellShop createDefault(){
         return new SpellShop(List.of(
-                new HeatFlare(), new DragonFury(),
-                new SunBolt(), new LightOcean(),
-                new Glitch(), new EnergySphere()
+                WinxSpells.HEAT_FLARE, WinxSpells.DRAGON_FURY,
+                WinxSpells.SUN_BOLT, WinxSpells.LIGHT_OCEAN,
+                WinxSpells.GLITCH, WinxSpells.ENERGY_SPHERE
         ));
     }
 

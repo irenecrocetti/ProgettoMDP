@@ -1,8 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.domain.model.winx;
 
 import it.unicam.cs.mpgc.rpg130573.domain.ability.enums.CharacterAllocation;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.FireBall;
-import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.FlameShield;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpells;
 
 /**
  * Definisce le statistiche e abilità di Bloom
@@ -13,8 +12,8 @@ public class Bloom extends Winx{
 
     public Bloom() {
         super("Bloom", CharacterAllocation.BLOOM, BLOOM_DEFAULT_HEALTH, BLOOM_DEFAULT_HEALTH, BLOOM_DEFAULT_STAMINA, BLOOM_DEFAULT_STAMINA, 0);
-        addSpell(new FlameShield());
-        addSpell(new FireBall());
+        addSpell(WinxSpells.FIRE_BALL);
+        addSpell(WinxSpells.FLAME_SHIELD);
     }
 
 }
