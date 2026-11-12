@@ -1,7 +1,9 @@
-# 📌 Nome del Progetto
+# 📌 RPG Winx
 
-Breve descrizione del progetto (2-3 righe):  
-Spiega cosa fa il programma e a cosa serve.
+RPG Winx è un gioco di ruolo a turni ispirato al mondo delle Winx. 
+Si controlla un gruppo di tre Winx (Bloom, Stella e Tecna) che affrontano 
+una serie di livelli contro i nemici del cartone animato, guadagnando XP, 
+salendo di livello ed imparando nuovi incantesimi.
 
 ---
 
@@ -14,8 +16,8 @@ Spiega cosa fa il programma e a cosa serve.
 ### Istruzioni
 
 ```bash
-git clone <url-del-repository>
-cd <nome-cartella>
+git clone https://github.com/irenecrocetti/ProgettoMDP_WinxRPG.git
+cd ProgettoMDP_WinxRPG
 ```
 
 ### Build del progetto
@@ -31,51 +33,15 @@ cd <nome-cartella>
 ---
 
 ## 🤖 Uso di strumenti di AI
+Durante lo sviluppo è stato usato Claude esclusivamente come strumento di supporto. 
+In particolare, suddetti strumenti sono stati usati per:
+- Chiarire ed approfondire i concetti teorici di progettazione riguardanti
+Java, JavaFX, OOP e principi SOLID;
+- Revisione del codice nel rispetto della specifica e risoluzione di eventuali bug
+e/o errori di compilazione;
+- Discutere alcune scelte progettuali, individuando eventuali alternative;
+- Supporto nella progettazione della GUI;
+- Supporto nella stesura della documentazione e del JavaDoc.
 
-Indicare **se e come** sono stati utilizzati strumenti di AI (es. ChatGPT, Copilot, ecc.).
-Descrivere in modo chiaro **per quali attività** e **con quale livello di intervento personale**.
-
-È importante dimostrare che:
-* il codice è stato **compreso**
-* l’AI è stata usata come **supporto**, non come sostituto
----
-
-📌 Per una descrizione più dettagliata dell’uso dell’AI, utilizzare la **Wiki del repository**.
-
-
-### Esempi :
-
-* Utilizzato ChatGPT per:
-
-  * comprendere concetti teorici (es. differenza tra classi e oggetti)
-  * chiarire errori di compilazione
-  * suggerimenti su struttura del codice
-
-* Utilizzato Copilot per:
-
-  * autocompletamento di metodi semplici
-  * generazione di codice ripetitivo (es. getter/setter)
-
-* Utilizzato ChatGPT per generare una prima versione di una funzione, poi:
-
-  * modificata e adattata manualmente
-  * testata e corretta personalmente
-
----
-
-Oppure:
-- Non sono stati utilizzati strumenti di AI
-
----
-
-
-## ⚠️ Nota
-
-Questo è un template: **modificare e adattare tutte le parti necessarie** in base al proprio progetto
-
-
-
-
-
-
-
+Il codice è stato scritto, compreso e testato personalmente. L'AI è stata usata
+esclusivamente come supporto e non come sostituto.
