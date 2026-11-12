@@ -2,6 +2,7 @@ package it.unicam.cs.mpgc.rpg130573.domain.shop;
 
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.DragonFury;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.BloomSpells.HeatFlare;
+import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.Spell;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.StellaSpells.LightOcean;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.StellaSpells.SunBolt;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.TecnaSpells.EnergySphere;
@@ -22,6 +23,9 @@ public class SpellShop {
 
     public SpellShop(List<WinxSpell> catalog){
         this.catalog = List.copyOf(catalog);
+        long distinct = this.catalog.stream().map(Spell::getId).distinct().count();
+        if (distinct != this.catalog.size())
+            throw new IllegalArgumentException("Il catalogo contiene incantesimi con lo stesso id");
     }
 
     /**
@@ -66,18 +70,16 @@ public class SpellShop {
      * scala gli xp e aggiunge l'incantesimo alla Winx.
      */
     public PurchaseResult buy(Winx buyer, WinxSpell spell){
-        if(catalog.stream().noneMatch(s -> s.getClass() == spell.getClass()))
-            return PurchaseResult.NOT_IN_SHOP;
-        if(spell.getCharacterAllocation() != buyer.getCharacterAllocation())
+        Optional<WinxSpell> offered = findById(spell.getId());
+        if (offered.isEmpty()) return PurchaseResult.NOT_IN_SHOP;
+        WinxSpell item = offered.get();
+        if (item.getCharacterAllocation() != buyer.getCharacterAllocation())
             return PurchaseResult.WRONG_CHARACTER;
-        if(buyer.hasSpell(spell))
-            return PurchaseResult.ALREADY_OWNED;
-        if(spell.getUnlockLevel() > buyer.getLevel())
-            return PurchaseResult.LEVEL_TOO_LOW;
-        if(!buyer.getStatusManager().spendXP(spell.getXPCost()))
-            return PurchaseResult.NOT_ENOUGH_XP;
+        if (buyer.hasSpell(item)) return PurchaseResult.ALREADY_OWNED;
+        if (item.getUnlockLevel() > buyer.getLevel()) return PurchaseResult.LEVEL_TOO_LOW;
+        if (!buyer.getStatusManager().spendXP(item.getXPCost())) return PurchaseResult.NOT_ENOUGH_XP;
 
-        buyer.learnSpell(spell);
+        buyer.learnSpell(item);
         return PurchaseResult.SUCCESS;
     }
 

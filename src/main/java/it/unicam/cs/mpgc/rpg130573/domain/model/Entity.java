@@ -52,14 +52,10 @@ public abstract class Entity {
 
     /**
      * Controlla se tra gli incantesimi c'è già quello passato come parametro
-     * @param spell incantesimo da cercare
-     * @return true se l'incantesimo è presente, false altrimenti
+     * Due incantesimi sono "lo stesso" se hanno lo stesso {@link Spell#getId() id}.
      */
     public boolean hasSpell(Spell spell){
-        for(Spell s : spells ){
-            if(s.getClass() == spell.getClass()) return true;
-        }
-        return false;
+        return spells.stream().anyMatch(s -> s.getId().equals(spell.getId()));
     }
 
     /**
