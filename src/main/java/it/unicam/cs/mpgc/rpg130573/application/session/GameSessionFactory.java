@@ -10,6 +10,7 @@ import it.unicam.cs.mpgc.rpg130573.domain.shop.SpellShop;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Assembla le partite dai contenuti del gioco (Winx, shop, livelli). È l'unico punto
@@ -35,6 +36,13 @@ public class GameSessionFactory {
         this.registry = Objects.requireNonNull(registry);
         if (this.party.isEmpty())
             throw new IllegalArgumentException("Il gruppo iniziale non può essere vuoto");
+        if (Set.copyOf(this.party).size() != this.party.size())
+            throw new IllegalArgumentException("Il gruppo iniziale contiene Winx duplicate");
+    }
+
+    /** @return  le Winx con cui inizia una nuova partita, nell'ordine di turno */
+    public List<CharacterAllocation> getParty() {
+        return party;
     }
 
     /** Contenuti del gioco di base. */
