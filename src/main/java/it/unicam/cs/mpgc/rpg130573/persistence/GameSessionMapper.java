@@ -1,5 +1,6 @@
 package it.unicam.cs.mpgc.rpg130573.persistence;
 
+import it.unicam.cs.mpgc.rpg130573.application.session.GameSessionFactory;
 import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.Spell;
 import it.unicam.cs.mpgc.rpg130573.domain.ability.spells.WinxSpell;
@@ -13,14 +14,10 @@ import it.unicam.cs.mpgc.rpg130573.domain.shop.SpellShop;
 import java.util.List;
 
 public class GameSessionMapper {
-    private final WinxFactory winxFactory;
-    private final SpellShop shop;
-    private final LevelRegistry registry;
+    private final GameSessionFactory factory;
 
-    public GameSessionMapper(WinxFactory winxFactory, SpellShop shop, LevelRegistry registry){
-        this.winxFactory = winxFactory;
-        this.shop = shop;
-        this.registry = registry;
+    public GameSessionMapper(GameSessionFactory factory){
+        this.factory = factory;
     }
 
     public GameSnapshot toSnapshot(GameSession session){
@@ -33,7 +30,7 @@ public class GameSessionMapper {
     private WinxSnapshot toSnapshot(Winx winx){
         List<String> purchased = winx.getSpells().stream()
                 .map(Spell::getId)
-                .filter(id -> shop.findById(id).isPresent())
+                .filter(id -> factory.findSpell(id).isPresent())
                 .toList();
         return new WinxSnapshot(winx.getCharacterAllocation(),
                 winx.getLevel(), winx.getXp(), purchased);
@@ -44,7 +41,7 @@ public class GameSessionMapper {
             throw new PersistenceException("Versione di salvataggio non supportata " + snapshot.version());
         try{
             List<Winx> winxes = snapshot.winxes().stream().map(this::restore).toList();
-            return new GameSession(winxes, shop, registry, snapshot.highestClearedLevel());
+            return factory.restoreGame(winxes, snapshot.highestClearedLevel());
         } catch (IllegalArgumentException e){
             throw new PersistenceException("Dati di salvataggio non validi", e);
         }
@@ -56,14 +53,14 @@ public class GameSessionMapper {
         if(s.xp() < 0)
             throw new PersistenceException("XP non validi: " + s.xp());
 
-        Winx winx = winxFactory.create(s.character());
+        Winx winx = factory.createWinx(s.character());
         for(int i = WinxStatusManager.MIN_LEVEL; i < s.level(); i++){
             winx.levelUp();
         }
         winx.getStatusManager().gainXP(s.xp());
 
         for(String id : s.purchasedSpellsIds()){
-            WinxSpell spell = shop.findById(id)
+            WinxSpell spell = factory.findSpell(id)
                     .orElseThrow(() -> new PersistenceException("Incantesimo sconosciuto: " + id));
             if(spell.getCharacterAllocation() != winx.getCharacterAllocation())
                 throw new PersistenceException(id + " non appartiene a " + winx.getName());

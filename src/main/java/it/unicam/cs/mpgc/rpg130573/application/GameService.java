@@ -1,6 +1,7 @@
 package it.unicam.cs.mpgc.rpg130573.application;
 
 import it.unicam.cs.mpgc.rpg130573.application.session.GameSession;
+import it.unicam.cs.mpgc.rpg130573.application.session.GameSessionFactory;
 import it.unicam.cs.mpgc.rpg130573.application.storage.GameStorage;
 import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.persistence.SaveService;
@@ -14,10 +15,12 @@ import java.util.Objects;
  */
 public class GameService {
     private final GameStorage storage;
+    private final GameSessionFactory sessionFactory;
     private GameSession current;
 
-    public GameService(GameStorage storage){
+    public GameService(GameStorage storage, GameSessionFactory sessionFactory){
         this.storage = Objects.requireNonNull(storage);
+        this.sessionFactory = Objects.requireNonNull(sessionFactory);
     }
 
     public boolean hasSave(){
@@ -29,7 +32,7 @@ public class GameService {
      * Non tocca il salvataggio su disco.
      */
     public GameSession startNewGame(){
-        current = GameSession.newGame();
+        current = sessionFactory.newGame();
         return current;
     }
 

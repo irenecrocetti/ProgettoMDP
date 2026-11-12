@@ -5,9 +5,6 @@ import it.unicam.cs.mpgc.rpg130573.domain.combat.Battle;
 import it.unicam.cs.mpgc.rpg130573.domain.level.Level;
 import it.unicam.cs.mpgc.rpg130573.domain.level.LevelRegistry;
 import it.unicam.cs.mpgc.rpg130573.domain.model.villains.Villain;
-import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Bloom;
-import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Stella;
-import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Tecna;
 import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
 import it.unicam.cs.mpgc.rpg130573.domain.shop.PurchaseResult;
 import it.unicam.cs.mpgc.rpg130573.domain.shop.SpellShop;
@@ -25,18 +22,7 @@ public class GameSession {
     private Level activeLevel;
     private Battle activeBattle;
 
-    /**
-     * Crea un nuovo salvataggio, le winx al livello 1, nessun livello superato
-     */
-    public static GameSession newGame(){
-        return new GameSession(
-                List.of(new Bloom(), new Stella(), new Tecna()),
-                SpellShop.createDefault(),
-                LevelRegistry.createDefault(),
-                0);
-    }
-
-    public GameSession(List<Winx> winxes, SpellShop shop,
+    GameSession(List<Winx> winxes, SpellShop shop,
                        LevelRegistry registry, int highestClearedLevel){
         if(highestClearedLevel < 0 || highestClearedLevel > registry.size())
             throw new IllegalArgumentException("Progresso non valido: " + highestClearedLevel);
