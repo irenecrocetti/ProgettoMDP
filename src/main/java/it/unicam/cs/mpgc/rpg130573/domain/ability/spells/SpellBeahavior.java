@@ -29,7 +29,7 @@ public interface SpellBeahavior {
      * effetti hanno stato: ogni lancio deve crearne uno nuovo.
      */
     static SpellBeahavior inflict(Supplier<Effect> effect){
-        return (source, target) -> source.getEffectManager().addEffect(effect.get());
+        return (source, target) -> target.getEffectManager().addEffect(effect.get());
     }
 
     /** Come inflict, ma l'effetto va a chi lancia */
