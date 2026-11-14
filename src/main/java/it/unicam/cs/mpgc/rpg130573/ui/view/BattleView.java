@@ -11,6 +11,7 @@ import it.unicam.cs.mpgc.rpg130573.ui.component.CombatantCard;
 import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
 import it.unicam.cs.mpgc.rpg130573.ui.navigation.Navigator;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
+import it.unicam.cs.mpgc.rpg130573.ui.resource.Theme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -140,7 +141,7 @@ public class BattleView extends BorderPane {
         button.setPrefWidth(170);
         button.setDisable(!option.castable());
         if (spell == pendingSpell) {
-            button.setStyle("-fx-border-color: #f9a825; -fx-border-width: 3; -fx-border-radius: 4;");
+            button.setStyle("-fx-border-color: " + Theme.HIGHLIGHT_ACTIVE + "; -fx-border-width: 3; -fx-border-radius: 4;");
         }
         button.setOnAction(e -> onSpellClicked(spell));
         return button;
@@ -150,7 +151,7 @@ public class BattleView extends BorderPane {
         VBox box = new VBox(10);
         if (outcome.won()) {
             Label title = new Label("Vittoria!");
-            title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2e7d32;");
+            title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: " + Theme.SUCCESS + ";");
             box.getChildren().addAll(title, new Label("Ogni Winx guadagna " + outcome.xpGained() + " XP."));
             if (outcome.firstClear())
                 box.getChildren().add(new Label("Prima vittoria su questo livello!"));
@@ -161,7 +162,7 @@ public class BattleView extends BorderPane {
             box.getChildren().add(next);
         } else {
             Label title = new Label("Sconfitta...");
-            title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #c62828;");
+            title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: " + Theme.DANGER + ";");
             Button retry = new Button("Riprova");
             retry.setOnAction(e -> navigator.showBattle(controller.getLevelId()));
             Button back = new Button("Torna ai livelli");

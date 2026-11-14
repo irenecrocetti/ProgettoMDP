@@ -73,15 +73,15 @@ public class PortraitProvider {
         Rectangle background = new Rectangle(height * 0.75, height);
         background.setArcHeight(16);
         background.setArcWidth(16);
-        background.setFill(Color.web("#e0e0e0"));
+        background.setFill(Color.web(Theme.PLACEHOLDER_BACKGROUND));
 
         Label initial = new Label(entity.getName().substring(0,1));
-        initial.setStyle("-fx-font-size: 48px; -fx-text-fill: #757575;");
+        initial.setStyle("-fx-font-size: 48px; -fx-text-fill: " + Theme.PLACEHOLDER_TEXT + ";");
         VBox content = new VBox(2, initial);
         content.setAlignment(Pos.CENTER);
         if(entity instanceof Winx winx){
             Label level = new Label("Liv. " + winx.getLevel());
-            level.setStyle("-fx-text-fill: #757575;");
+            level.setStyle("-fx-text-fill: " + Theme.PLACEHOLDER_TEXT + ";");
             content.getChildren().add(level);
         }
         return new StackPane(background, content);

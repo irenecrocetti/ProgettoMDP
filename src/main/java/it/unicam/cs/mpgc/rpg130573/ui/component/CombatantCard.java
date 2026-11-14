@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg130573.ui.component;
 import it.unicam.cs.mpgc.rpg130573.domain.effect.Effect;
 import it.unicam.cs.mpgc.rpg130573.domain.model.Entity;
 import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
+import it.unicam.cs.mpgc.rpg130573.ui.resource.Theme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -19,8 +20,6 @@ public class CombatantCard extends VBox {
     public enum Highlight { NONE, ACTIVE, TARGETABLE }
 
     private static final double WIDTH = 160;
-    private static final String HP_COLOR = "#c62828";
-    private static final String STAMINA_COLOR = "#1565c0";
 
     public CombatantCard(Entity entity, Node portrait, Highlight highlight){
         super(4);
@@ -40,7 +39,7 @@ public class CombatantCard extends VBox {
         getChildren().addAll(portrait, name, createHealth(entity));
         if(entity instanceof Winx winx){
             getChildren().add(createBar("Stamina " + winx.getStamina() + " / " + winx.getMaxStamina(),
-                    winx.getStamina(), winx.getMaxStamina(), STAMINA_COLOR));
+                    winx.getStamina(), winx.getMaxStamina(), Theme.STAMINA));
 
         }
         getChildren().add(createEffects(entity));
@@ -48,12 +47,13 @@ public class CombatantCard extends VBox {
 
     private static String borderStyle(Highlight highlight){
         String color = switch (highlight) {
-            case ACTIVE -> "#f9a825";
-            case TARGETABLE -> "#c62828";
-            case NONE -> "#bdbdbd";
+            case ACTIVE -> Theme.HIGHLIGHT_ACTIVE;
+            case TARGETABLE -> Theme.HIGHLIGHT_TARGET;
+            case NONE -> Theme.BORDER;
         };
         int width = highlight == Highlight.NONE ? 1 : 3;
-        return "-fx-border-color: " + color + "; -fx-border-width: " + width
+        return "-fx-background-color: " + Theme.CARD_BACKGROUND + ";"
+                + " -fx-border-color: " + color + "; -fx-border-width: " + width
                 + "; -fx-border-radius: 8; -fx-background-radius: 8;";
     }
 
@@ -68,11 +68,11 @@ public class CombatantCard extends VBox {
     private static Node createHealth(Entity entity){
         if (entity.isInvulnerable()) {
             Label label = new Label("Invulnerabile");
-            label.setStyle("-fx-text-fill: #6a1b9a; -fx-font-style: italic;");
+            label.setStyle("-fx-text-fill: " + Theme.SPECIAL + "; -fx-font-style: italic;");
             return label;
         }
         return createBar("HP " + entity.getHp() + " / " + entity.getMaxHP(),
-                entity.getHp(), entity.getMaxHP(), HP_COLOR);
+                entity.getHp(), entity.getMaxHP(), Theme.HP);
     }
 
     private static Node createBar(String text, int value, int max, String color){
@@ -92,7 +92,7 @@ public class CombatantCard extends VBox {
         label.setWrapText(true);
         label.setMinHeight(32);
         label.setMaxWidth(WIDTH - 16);
-        label.setStyle("-fx-font-size: 11px; -fx-text-fill: #555555;");
+        label.setStyle("-fx-font-size: 11px; -fx-text-fill: " + Theme.TEXT_MUTED + ";");
         return label;
     }
 

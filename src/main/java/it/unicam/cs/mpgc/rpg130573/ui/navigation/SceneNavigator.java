@@ -3,6 +3,7 @@ package it.unicam.cs.mpgc.rpg130573.ui.navigation;
 import it.unicam.cs.mpgc.rpg130573.application.GameService;
 import it.unicam.cs.mpgc.rpg130573.application.battle.BattleController;
 import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
+import it.unicam.cs.mpgc.rpg130573.ui.resource.Theme;
 import it.unicam.cs.mpgc.rpg130573.ui.view.BattleView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.LevelSelectView;
 import it.unicam.cs.mpgc.rpg130573.ui.view.MainMenuView;
@@ -58,7 +59,9 @@ public class SceneNavigator implements Navigator{
 
     private void show(Parent root){
         if(stage.getScene() == null){
-            stage.setScene(new Scene(root, WIDTH, HEIGHT));
+            Scene scene = new Scene(root, WIDTH, HEIGHT);
+            scene.getStylesheets().add(Theme.stylesheet());
+            stage.setScene(scene);
         } else {
             stage.getScene().setRoot(root);
         }

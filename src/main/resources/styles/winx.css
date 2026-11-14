@@ -1,0 +1,11 @@
+.root, .dialog-pane {
+    -fx-base: #f8bbd0;
+    -fx-background: #fce4ec;
+    -fx-background-color: #fce4ec;
+    -fx-control-inner-background: #fff5f8;
+    -fx-accent: #ec407a;
+    -fx-focus-color: #ec407a;
+    -fx-faint-focus-color: #ec407a33;
+    -fx-text-base-color: #880e4f;
+    -fx-text-background-color: #880e4f;
+}

@@ -9,6 +9,7 @@ import it.unicam.cs.mpgc.rpg130573.application.storage.PersistenceException;
 import it.unicam.cs.mpgc.rpg130573.ui.component.Dialogs;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
 import it.unicam.cs.mpgc.rpg130573.ui.navigation.Navigator;
+import it.unicam.cs.mpgc.rpg130573.ui.resource.Theme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -79,7 +80,7 @@ public class LevelSelectView extends BorderPane {
         HBox row = new HBox(16, name, statusLabel, play, spacer);
         row.setAlignment(Pos.CENTER_LEFT);
         row.setPadding(new Insets(12));
-        row.setStyle("-fx-border-color: #bbbbbb; -fx-border-radius: 6;");
+        row.setStyle("-fx-border-color: " + Theme.BORDER + "; -fx-border-radius: 6;");
         return row;
     }
 
@@ -93,9 +94,9 @@ public class LevelSelectView extends BorderPane {
 
     private static String statusColor(LevelStatus status){
         return switch(status) {
-            case COMPLETED -> "#2e7d32";
-            case AVAILABLE -> "#1565c0";
-            case LOCKED -> "#757575";
+            case COMPLETED -> Theme.SUCCESS;
+            case AVAILABLE -> Theme.AVAILABLE;
+            case LOCKED -> Theme.TEXT_MUTED;
         };
     }
 

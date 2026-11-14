@@ -8,6 +8,7 @@ import it.unicam.cs.mpgc.rpg130573.domain.model.winx.Winx;
 import it.unicam.cs.mpgc.rpg130573.domain.shop.PurchaseResult;
 import it.unicam.cs.mpgc.rpg130573.ui.navigation.Navigator;
 import it.unicam.cs.mpgc.rpg130573.ui.resource.PortraitProvider;
+import it.unicam.cs.mpgc.rpg130573.ui.resource.Theme;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -129,7 +130,7 @@ public class ShopView extends BorderPane {
         HBox row = new HBox(12, name, info, spacer, buy);
         if (!affordable){
             Label missing = new Label("Mancano " + (spell.getXPCost() - winx.getXp()) + " XP");
-            missing.setStyle("-fx-text-fill: #c62828;");
+            missing.setStyle("-fx-text-fill: " + Theme.DANGER + ";");
             row.getChildren().add(row.getChildren().size() - 1, missing);
         }
         row.setAlignment(Pos.CENTER_LEFT);
@@ -145,7 +146,7 @@ public class ShopView extends BorderPane {
         for (WinxSpell spell : locked){
             Label label = new Label(spell.getName() + ": livello " + spell.getUnlockLevel()
                     + " richiesto, costo " + spell.getXPCost() + " XP");
-            label.setStyle("-fx-text-fill: #757575;");
+            label.setStyle("-fx-text-fill: " + Theme.TEXT_MUTED + ";");
             box.getChildren().add(label);
         }
         return box;
